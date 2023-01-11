@@ -1,0 +1,150 @@
+
+//Hoja de estilo para la página de inicio.
+@media screen and (min-width: 900px){
+    .inicio{
+        min-width: 100%;
+        height: max-content;
+        display:flex;
+        flex-flow: row;
+    }
+
+    .inicio__imagen2{
+        width: 50%;
+        height: 90vh;
+        background-image: var(--fondo-hojas);
+        background-repeat: repeat;
+        background-size: 20rem;
+    }
+
+    #inicio__imagen2--juego{
+        width: 40vh;
+        display: block;
+        margin: auto;
+        justify-content: center;
+        margin-top: 20vh;
+    }
+    
+    .inicio__bienvenida{
+        width: 50%;
+        height: 90vh;
+        display: flex;
+        align-items: center;
+        flex-flow:column;
+        position: absolute;
+        left: 50%;
+        justify-content:space-evenly;
+    }
+
+    .inicio__bienvenida--p{
+        font-size: 24px;
+        text-align: center;
+        margin-right: 50px;
+        margin-left: 50px;
+    }
+
+    #inicio__bienvenida--h1{
+        text-align: center;
+        margin-right: 50px;
+        margin-left: 50px;
+    }
+
+    .inicio__redesSociales{
+        display: block;
+        position: absolute;
+        bottom: 0px;
+    }
+
+    .inicio__redesSociale__redes{
+        width: 3vh;
+        padding: 5px;
+        cursor: pointer;
+    }
+
+    .inicio__personaje{
+        width: 50%;
+        height: max-content;
+        display: flex;
+        flex-flow: row;
+        justify-content:space-between;
+        align-items: flex-end;
+        position: absolute;
+        bottom: 0%;
+        right: 10px;
+    }
+
+    .personaje__personajes{
+        width: 12vh;
+        height: auto;
+    }
+}
+
+
+//Cuando la página tenga un width menor o igual a 900px se visualizará los siguientes estilos. 
+@media screen and (max-width: 900px){
+
+    header{
+        a{
+            font-size: 1.1em;
+        }
+    }
+
+    .inicio__imagen2{
+        width: 100%;
+        height: 50vh;
+        background-image: var(--fondo-hojas);
+        background-repeat: repeat;
+        background-size: 40rem;
+    }
+    
+    #inicio__imagen2--juego{
+        width: 35vh;
+        height: auto;
+        display: block;
+        margin: auto;
+        padding-top: 55px;
+    }
+    .inicio__bienvenida{
+        text-align: center;
+        display: inline;
+        margin: 40px;
+        button{
+            width: 300px;
+            display: block;
+            margin: auto;
+            margin-top: 50px;
+        }
+    }
+    .inicio__bienvenida--p{
+        font-size: 20px;
+        text-align: center;
+        margin-left: 20px;
+        margin-right: 20px;
+        
+    }
+        .inicio__redesSociales{
+            align-items: center;
+            display:block;
+            position: absolute;
+            top: 58%;
+            left: 30%;
+        }   
+        .inicio__redesSociale__redes{
+            padding: 10px;
+            cursor: pointer;
+        }
+    
+    .inicio__personaje{
+        display: inline-flex;
+    }
+    #personaje__personajes--isabelle{
+        display: none;
+    }
+    .personaje__personajes{
+        width: 10vh;
+        height: auto;
+        position: fixed;
+        bottom: 0vh;
+        left: 10px;
+    }
+}
+

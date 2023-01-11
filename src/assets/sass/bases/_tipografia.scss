@@ -1,0 +1,45 @@
+
+
+//Estilos de los encabezados y párrafos.
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Sura', serif;;
+    font-weight: bold;
+    color: var(--color-letra);
+}
+
+h1{
+    font-size: calc(0.75em + 4vw);
+}
+
+h2{
+    font-size: calc(0.5em + 3.5vw);
+}
+
+h3{
+    font-size:  calc(1em + 3vw);
+}
+
+h4{
+    font-size: calc(1em + 2.5vw);
+}
+
+h5{
+    font-size: calc(1em + 1vw);
+}
+
+h6{
+    font-size:calc(1em + 1.5vw);
+}
+
+.p-desktop{
+    font-size: calc(1em + 1.25vw);
+    font-weight: bold;
+    color: var(--color-letra-p);
+}
+
+p{
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--color-letra-p);
+}

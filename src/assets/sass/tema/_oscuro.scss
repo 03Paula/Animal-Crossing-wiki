@@ -1,0 +1,19 @@
+
+//Variables en css para el modo oscuro.
+[tema="oscuro"]{
+    --color-primario: #{$colorPrimarioOsc};
+    --color-secundario: #{$colorSecundarioOsc};
+    --color-fondo: #{$colorFondoOsc};
+    --color-boton: #{$colorBotonOsc};
+    --color-hover: #{$colorHoverOsc};
+    --color-input: #{$colorInputOsc};
+    --color-letra: #{$colorletraOsc};
+    --color-letra-input: #{$colorLetraInputOsc};
+    --color-letra-p: #{$colorLetrapOsc};
+
+
+//Imágenes
+    --fondo-hojas: url(leafpatternosc.png);
+    --fondo-usuario: url(leafpattern2osc.png);
+}
+

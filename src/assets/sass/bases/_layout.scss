@@ -1,0 +1,167 @@
+
+// Hoja de estilo para los distintos header y footer. 
+header{
+    width:100%;
+    height: 100px;
+    background-color: var(--color-secundario);
+}
+
+.header__logo{
+    width: 140px;
+    height: auto;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+
+    .header__inicioSesion{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        margin: 15px;
+
+        a{
+            font-size: 1.5em;
+            font-weight: bold;
+            font-family: 'Sura';
+            text-decoration: none;
+            margin-right: 5px;
+            color: var(--color-primario);
+            :visited {
+                text-decoration: none;
+            }
+        }
+    }
+
+    .headerbusqueda{        
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        margin: 15px;
+    }
+
+    .btn__headerbusqueda{
+        width: 40px;
+        height: 40px;
+        margin-right: 15px;
+        margin-left: 10px;
+        border-radius: 50%;
+    }
+    
+    #header__busqueda__img{
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+    }
+
+    #headerbusqueda--search{
+        font-weight: 800;
+        color: var(--color-primario);
+        padding:10px;
+        background-color: transparent;
+        border-radius: 20px;
+        
+        &:focus{
+            outline: none;
+        }
+        &::placeholder{
+            font-size: 16px;
+            font-weight: bolder;
+            color: var(--color-primario);
+        }
+    }
+
+    .headerbusqueda__img--favorito, .header--imagenredonda{
+       margin-right: 5px;
+       cursor: pointer;
+    }
+    
+    .headerbusqueda__p{
+        font-size: 1em;
+        font-weight: bold;
+        font-family: 'Sura';
+        color: var(--color-primario);
+        margin-left: 5px;
+        margin-right: 20px;
+        cursor: pointer;
+    }
+
+
+
+@media screen and (max-width: 768px){
+    
+    .headerbusqueda__img--favorito {
+        margin-right: 10px;
+    }
+    #headerbusqueda--search,.headerbusqueda__favorito,.btn__headerbusqueda{
+        display: none;
+    }
+
+    .btn--diaNoche{
+        width: 40px;
+        height: 40px;
+        margin-left: 5px;
+        border-radius: 50%;
+    }
+}
+
+footer{
+    width: 100%;
+    height: 80px;
+    position:relative;
+    bottom: 0px;
+    background-color: var(--color-secundario);
+}
+
+    a{
+        font-size: 1.5em;
+        font-weight: bold;
+        font-family: 'Sura';
+        text-decoration: none;
+        color: var(--color-primario);
+        :visited {
+            text-decoration: none;
+        }
+    }
+    
+    .footerSesion__redes,.footer__redes{
+        justify-items: flex-start;
+        align-items: center;
+        margin-left: 20px;
+        margin-right: 8px;
+        margin-top: 25px;
+        cursor: pointer;
+   }
+    .footer__p{
+        font-size: 1rem;
+        color: var(--color-fondo);
+        float: right;
+        margin-right:25px;
+        margin-top: 20px;
+    }
+    
+    .footerSesion{
+        position:relative;
+        bottom: 0px;
+        margin-top: 327px;
+    }
+
+    .imagenBienvenida{
+        position: relative;
+        bottom: 335px;
+        float: right;
+    }
+
+.footerOceano{
+    background-color: var(--color-fondo);
+    background-image: url(footerOceano.png);
+    background-repeat: repeat-x;
+}
+

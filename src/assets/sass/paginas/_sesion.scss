@@ -1,0 +1,65 @@
+
+//Hoja de estilo para la página de inicio de sesión y registro de usuario.
+.formulario{
+    width: 50%;
+    height: max-content;
+    text-align: center;
+    margin: auto;
+    margin-top: 87px;
+    margin-bottom: 100px;
+    padding: 20px;
+
+    background-image: var(--fondo-hojas);
+    background-repeat: repeat;
+    background-size: 10rem;
+    border-radius: 50px;
+}
+
+    .formulario__h2{
+        color: var(--color-letra);
+        display: block;
+        margin: auto;
+    }
+    
+    .formulario__input{
+        width: 50%;
+        height: 40px;
+        display: block;
+        margin: auto;
+        margin-top: 60px;
+        margin-bottom: 40px;
+        padding-left: 10px;
+        background-color: var(--color-input);
+        border: none;
+        border-radius: 10px;
+        
+        &:last-of-type{
+            margin-bottom: 10px;
+        }
+
+        &::placeholder{
+            font-size: calc(0.5em + 0.5vw);
+            font-weight:600;
+            color: var(--color-letra-input);
+        }
+
+    }
+    
+    .formulario__p{
+        font-size: calc(0.75em + 0.3vw);
+        font-weight:bolder;
+        text-decoration: none;
+        color: var(--color-letra);
+        margin-bottom: 30px;
+    }
+    
+    .btn--mediumDesktop {
+        margin-bottom: 20px;
+        margin-top: 30px;
+    }
+
+
+.imagenBienvenida__imagen{
+    width: 327px;
+    height:auto;
+}

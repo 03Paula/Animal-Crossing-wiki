@@ -1,0 +1,40 @@
+
+//Estilos para los distintos botones.
+
+.btn--largeDesktop{
+    width: 30%;
+    height: 50px;
+    font-size: large;
+    font-weight: bold;
+}
+
+.btn--mediumDesktop{
+    width: 170px;
+    height: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+
+}
+
+.btn--small{
+    width: 122px;
+    height: 44px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    
+}
+
+button{
+    width: 75px;
+    height: 40px;
+    color: var(--color-primario);
+    background-color: var(--color-boton);
+    border: var(--color-boton);
+    border-radius: 40px;
+    cursor: pointer;
+}
+
+button:hover{
+    color: var(--color-primario);
+    background-color: var(--color-hover);
+}

@@ -1,0 +1,17 @@
+
+//Variables en css para el modo claro.
+[tema = "claro"] {
+    --color-primario: #{$colorPrimario};
+    --color-secundario: #{$colorSecundario};
+    --color-fondo: #{$colorFondo};
+    --color-boton: #{$colorBoton};
+    --color-hover: #{$colorHover};
+    --color-input: #{$colorInput};
+    --color-letra: #{$colorletra};
+    --color-letra-input: #{$colorLetraInput};
+    --color-letra-p: #{$colorLetrap};
+
+    //Imágenes
+    --fondo-hojas: url(leafpattern.png);
+    --fondo-usuario: url(leafpattern2.png);
+}
