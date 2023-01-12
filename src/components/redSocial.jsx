@@ -1,12 +1,17 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 
 function RedSocial(props)
 {
+    
     return (
         <img
-            className="inicio__redesSociales__redes"
+            className={`${props.className}`}
             src={require(`../assets/img/${props.img}`)}
-            onclick={`${props.enlace}`}
+            onClick = {() =>{
+                window.open(`${props.enlace}`, '_blank')
+            }
+        }
         />
     )
 }

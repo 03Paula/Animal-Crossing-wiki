@@ -1,15 +1,13 @@
 import React from "react";
-import Header from "./header";
+import Header from "./headerIndex";
 import Button from "./button";
 import RedSocial from "./redSocial";
-import '../assets/sass/App.scss';
-
 
 function Index(){
-    let tema;
 
     return (
-        <body className={`${tema}`}>
+        <html>
+            <body>
             <Header />
             <audio autoplay loop>
                 <source
@@ -44,16 +42,33 @@ function Index(){
 
                     <section className="inicio__redesSociales">
                         <RedSocial 
+                            className='inicio__redesSociale__redes'
                             img='twitter.png'
-                            onclick="http://twitter.com/"
+                            enlace="http://twitter.com/"
                         />
-                        <img className="inicio__redesSociales__redes" src={require('../assets/img/discord.png')} onclick="location.href='https://discord.com/'" />
-                        <img className="inicio__redesSociales__redes" src={require('../assets/img/instagram.png')} onclick="location.href='https://www.instagram.com/'" />
-                        <img className="inicio__redesSociales__redes" src={require('../assets/img/facebook.png')} onclick="location.href='https://es-es.facebook.com/'" />
+                        <RedSocial 
+                            className='inicio__redesSociale__redes'
+                            img='discord.png'
+                            enlace="https://discord.com"
+                        />
+                        
+                        <RedSocial 
+                            className='inicio__redesSociale__redes'
+                            img='facebook.png'
+                            enlace='https://es-es.facebook.com'
+                        />
+
+                        <RedSocial
+                            className='inicio__redesSociale__redes'
+                            img='instagram.png'
+                            enlace='https://www.instagram.com'
+                        />   
                     </section>
                 </section>
             </section>
         </body>
+    </html>
+        
     )
 }
 
