@@ -1,5 +1,5 @@
 import React from "react";
-import BotonTema from "./buttonTema";
+import BotonTema from "./botonTema";
 import { useNavigate } from 'react-router-dom';
 
 function HeaderLista()
@@ -15,7 +15,7 @@ function HeaderLista()
                         <img src={require('../assets/img/corazon.png')} className="headerbusqueda__img--favorito" alt="icono de corazón" />
                         <p className="headerbusqueda__p headerbusqueda__favorito">Favoritos</p>
                         <img src={require('../assets/img/Resetti.png')} className="header--imagenRedonda" onClick={() => navegate('/usuario.html')} alt="avatar del usuario" />
-                        <p className="headerbusqueda__p" onClick={() => navegate('/usuario.html')}>Usuario1</p>
+                        <p className="headerbusqueda__p" onClick={() => navegate('/usuario.html')}>${localStorage.getItem('usuario')}</p>
                         <BotonTema />
                 </section>
             </section>

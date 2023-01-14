@@ -1,6 +1,6 @@
 import React from "react";
 import HeaderRegistro from "./headerRegistro";
-import Button from "./button";
+import Button from "./boton";
 
 function Contacto() {
     return(
@@ -26,7 +26,7 @@ function Contacto() {
                             <label className="contactar2__label" for="Email">Email</label>
                             <input className="contactar2__input" type="email" name="Email" id="Email" required />
                             <label className="contactar2__label" for="Comentarios">Comentarios</label>
-                            <textarea clasNames="contactar2__textarea" name="Comentarios" id="Comentarios" placeholder="Escriba su comentario..." required >
+                            <textarea className="contactar2__textarea" name="Comentarios" id="Comentarios" placeholder="Escriba su comentario..." required >
                             </textarea>
                             <Button 
                                 clasNames='btn--small'

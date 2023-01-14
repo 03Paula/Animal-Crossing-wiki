@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "./headerIndex";
-import Button from "./button";
+import Button from "./boton";
 import RedSocial from "./redSocial";
 
 function Index(){

@@ -1,7 +1,7 @@
 import { logDOM } from "@testing-library/react";
 import React from "react";
 import { useNavigate } from 'react-router-dom';
-import BotonTema from "./buttonTema";
+import BotonTema from "./botonTema";
 
 function HeaderRegistro()
 {

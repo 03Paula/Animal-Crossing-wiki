@@ -1,5 +1,5 @@
 import React from "react";
-import BotonTema from "./buttonTema";
+import BotonTema from "./botonTema";
 import { useNavigate } from 'react-router-dom';
 
 

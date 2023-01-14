@@ -1,12 +1,14 @@
 import React from "react";
-import Button from "./button";
-import Header from "./headerIndex";
+import BotonCerrarSesion from "./botonCerrarSesion";
+import Button from "./boton";
+import HeaderRegistro from "./headerRegistro";
+import Flecha from "./flecha";
 import FooterUsuario from "./footerUsuario";
 
-function Usuario(props){
+function Usuario(){
     return(
         <html>
-            <Header />
+            <HeaderRegistro />
             <main>
                 <section className="usuario">
                     <section className="imagen-usuario">
@@ -15,25 +17,26 @@ function Usuario(props){
                             className='btn--mediumDesktop--usuario btn--mediumDesktop'
                             texto='Cambiar imagen'
                         />
-                    <h1>{`${props.nombreUsuario}`}</h1>
+                    <h1>{`${localStorage.getItem('usuario')}`}</h1>
                     </section> 
 
                     <section className="info-usuario"> 
-                    <h5 className="info-usuario__h5">Nombre : {`${props.nombre}`}</h5>
-                    <h5 className="info-usuario__h5">Apellidos : {`${props.apellido}`}</h5>
-                    <h5 className="info-usuario__h5">Correo Electrónico : {`${props.correo}`}</h5>
-                    <h5 className="info-usuario__h5">Número de teléfono : {`${props.telefono}`}</h5>
-                    <h5 className="info-usuario__h5">Nombre de usuario : {`${props.nombreUsuario}`}</h5>
-                    <Button 
-                        className='btn--mediumDesktop--usuario1 btn--mediumDesktop'
-                        texto='Cerrar Sesión'
-                    />
+                    <h5 className="info-usuario__h5">Nombre : {`${localStorage.getItem('nombre')}`}</h5>
+                    <h5 className="info-usuario__h5">Apellidos : {`${localStorage.getItem('apellidos')}`}</h5>
+                    <h5 className="info-usuario__h5">Correo Electrónico : {`${localStorage.getItem('email')}`}</h5>
+                    <h5 className="info-usuario__h5">Número de teléfono : {`${localStorage.getItem('numero')}`}</h5>
+                    <h5 className="info-usuario__h5">Nombre de usuario : {`${localStorage.getItem('usuario')}`}</h5>
+                    <BotonCerrarSesion />
                     </section>
                 </section>
 
                 <section className="mostrar-favorito">
                     <h5>Favoritos</h5>
+                    <Flecha 
+                        url="/listado.html"
+                    />
                 </section>
+                
             </main>
             
             <FooterUsuario />
