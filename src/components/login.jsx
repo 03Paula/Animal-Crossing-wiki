@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import HeaderRegistro from "./headerRegistro";
 import BotonSesion from './botonSesion';
@@ -24,17 +24,24 @@ function Login()
     function handleSubmit(e){
         e.preventDefault();
 
-        for (let i = 0; i < usuarios.length(); i++){
-            if (usuarios[i].usuario == values.usuario && usuarios[i].contrasenia == values.contrasenia){
+        let formulario = false;
+        for (let i = 0; i < usuarios.length; i++){
+            if (usuarios[i].usuario === values.usuario && usuarios[i].contrasenia === values.contrasenia){
                 localStorage.setItem("nombre", usuarios[i].nombre);
                 localStorage.setItem("apellidos", usuarios[i].apellidos);
                 localStorage.setItem("email", usuarios[i].email);
                 localStorage.setItem("numero", usuarios[i].numero);
                 localStorage.setItem("usuario", usuarios[i].usuario);
                 localStorage.setItem("contraseña", usuarios[i].contrasenia);
-                alert("Has iniciado sesión correctamente.")
-                navigate('/listado.html')
+                formulario=true;
             }
+        }
+
+        if(!values.usuarioError && !values.contraseniaError & formulario===true){
+            alert("Has iniciado sesión correctamente.")
+            navigate('/listado.html')
+        }else{
+            alert('La contraseña o el usuario no coinciden.')
         }
     }
 
@@ -50,8 +57,8 @@ function Login()
 
     function handleUsuarioError(){
         let usuario = false;
-        for (let i = 0; i < usuarios.length(); i++){
-            if(usuarios[i].usuario == values.usuario){
+        for (let i = 0; i < usuarios.length; i++){
+            if(usuarios[i].usuario === values.usuario){
                 usuario = true;
             }
         }
@@ -61,8 +68,8 @@ function Login()
 
     function handleContraseniaError(){
         let contrasenia = false;
-        for (let i = 0; i < usuarios.length(); i++){
-            if(usuarios[i].contrasenia == values.contrasenia){
+        for (let i = 0; i < usuarios.length; i++){
+            if(usuarios[i].contrasenia === values.contrasenia){
                 contrasenia = true;
             }
         }
@@ -79,12 +86,12 @@ function Login()
             <section className="formulario">
             <h2 className="formulario__h2">Inicio de Sesión</h2>
                 <form onSubmit={handleSubmit}>
-                    <input class="formulario__input" type="text" name="nombre" id="nombre" placeholder="Nombre de usuario" 
-                            value={values.usuario} onChange={handleChange} onBlur={handleUsuarioError} aria-errormessage='usuarioError' aria-invalid={values.usuarioError}
-                            required 
-                    />
-                    <span className='error' id="usuarioError" aria-live='assertive' style={{visibility: values.usuarioError ? "visible" : "hidden", fontSize:'12px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
-                        El nombre de usuario no está registrado.
+                <input className="formulario__input" type="text" name="usuario" id="usuario" placeholder="Nombre de usuario" 
+                            onChange={handleChange} value={values.usuario} onBlur={handleUsuarioError} aria-errormessage="usuarioError" aria-invalid={values.usuarioError}
+                            required  
+                        />
+                    <span className="error" id="usuarioError" aria-live="assertive" style={{visibility: values.usuarioError ? "visible" : "hidden", fontSize:'12px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
+                        Nombre de usuario inválido.
                     </span>
                     <input class="formulario__input" type="password" name="contrasenia" id="contrasenia" placeholder="Contraseña" 
                             value={values.contrasenia} onChange={handleChange} onBlur={handleContraseniaError} aria-errormessage='contraseñaError' aria-invalid={values.contraseniaError}
