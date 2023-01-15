@@ -11,8 +11,6 @@ function HeaderLista()
             <section className="header" >
                 <img className="header__logo" src={require('../assets/img/logo.webp')} onClick={() => navigate('/')} alt="Logo del Animal Crossing"/>
                 <section className="headerbusqueda">
-                    <input id="headerbusqueda--search" type="search" placeholder="buscar..." />
-                        <button className="btn__headerbusqueda"><img id="header__busqueda__img" src={require('../assets/img/Vector.png')} /></button>
                         <img src={require('../assets/img/corazon.png')} className="headerbusqueda__img--favorito" alt="icono de corazón" />
                         <p className="headerbusqueda__p headerbusqueda__favorito" onClick={() => navigate('/usuario.html')}>Favoritos</p>
                         <img src={require('../assets/img/Resetti.png')} className="header--imagenRedonda" onClick={() => navigate('/usuario.html')} alt="avatar del usuario" />

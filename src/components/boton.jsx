@@ -1,5 +1,10 @@
 import React from "react";
 
+/**
+ * 
+ * @param {*} props 
+ * @returns {JSX}
+ */
 function Button(props) 
 {
     return (
