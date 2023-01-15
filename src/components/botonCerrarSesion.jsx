@@ -7,12 +7,12 @@ function BotonCerrarSesion(){
     
         if(window.confirm('¿Estas seguro de que quieres cerrar sesión?')){
             localStorage.clear();
-            navigate('index.html')
+            navigate('/')
         }
     }
 
     return(
-        <button className="btn--mediumDesktop--usuario1 btn--mediumDesktop" onClick={() => CerrarSesion}>Cerrar Sesión</button>
+        <button className="btn--mediumDesktop--usuario1 btn--mediumDesktop" onClick={CerrarSesion}>Cerrar Sesión</button>
 
     )
 }

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 function BotonTema()
 {
-    const [tema, setTema ] = useState (localStorage.getItem('tema') || 'claro' );
+  
+  const [tema, setTema ] = useState (localStorage.getItem('tema') || 'claro' );
   const cambioTema = () => 
   {
     if (tema === 'claro'){

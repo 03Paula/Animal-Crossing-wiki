@@ -34,7 +34,7 @@ function App() {
           <Route exact path="/" element= {<Index />} />
           <Route exact path="/registro.html" element= {<Registro />} />
           <Route exact path="/inicioSesion.html" element= {<Login />} />
-          <Route exact path="/lista.html" element= {<Lista />} />
+          <Route exact path="/listado.html" element= {<Lista />} />
           <Route exact path="/contacto.html" element= {<Contacto />} />
           <Route exact path="/usuario.html" element= {<Usuario />} />
           <Route exact path="/error-404.html" element= {<Error404 />} />

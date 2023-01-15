@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import HeaderRegistro from "./headerRegistro";
 import FooterSesion from "./footerSesion";
 import BotonSesion from "./botonSesion";
+import Inactividad from "./inactividad";
 import { useNavigate } from "react-router-dom";
 
 const regEmail = new RegExp(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/);
@@ -36,6 +37,7 @@ function Registro()
         apellidos:'',
         email:'',
         numero:'',
+        genero:'',
         usuario:'',
         contrasenia:'',
         repcontrasenia:'',
@@ -44,6 +46,7 @@ function Registro()
         apellidosError:false,
         emailError:false,
         numeroError:false,
+        generoError:false,
         usuarioError:false,
         contraseniaError:false,
         regContrasenia:false
@@ -59,6 +62,7 @@ function Registro()
                 localStorage.setItem("apellidos", values.apellidos);
                 localStorage.setItem("email", values.email);
                 localStorage.setItem("numero", values.numero);
+                localStorage.setItem("genero", values.genero);
                 localStorage.setItem("usuario", values.usuario);
                 localStorage.setItem("contraseña", values.contrasenia);
                 alert(`Se ha registrado correctamente. Bienvenido ${localStorage.getItem('usuario')}`);
@@ -112,10 +116,15 @@ function Registro()
         Setvalues((prevState) => ({ ...prevState, repContraseniaError}));
     }
 
+    function handleErrorGenero(){
+        const generoError = (values.genero !== null);
+        Setvalues((prevState) => ({ ...prevState, generoError}));
+    }
+    
     return(
         <html>
             <HeaderRegistro />
-
+            <Inactividad />
             <main>
                 <section className="formulario">
                     <h2 className="formulario__h2">Registro de usuario</h2>
@@ -134,7 +143,7 @@ function Registro()
                     <span className="error" id="apellidosError" aria-live="assertive" style={{visibility: values.apellidosError ? "visible" : "hidden", fontSize:'12px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
                         Apellidos inválidos.Por favor introduzca unos apellidos válidos.
                     </span>
-                    <input className="formulario__input" type="text" name="email" id="email" placeholder="Correo Electrónico" 
+                    <input className="formulario__input" type="email" name="email" id="email" placeholder="Correo Electrónico" 
                             value={values.email} onChange={handleChange} onBlur={handleEmailError} aria-errormessage="emailError" aria-invalid={values.emailError}
                             required 
                         />
@@ -148,6 +157,31 @@ function Registro()
                     <span className="error" id="numeroError" aria-live="assertive" style={{visibility: values.numeroError ? "visible" : "hidden", fontSize:'12px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
                         Numéro inválido.Por favor introduzca un número de teléfono válido.
                     </span>
+                    
+
+                    <fieldset>
+                        <legend>Género: </legend>
+                        <input type="radio" name="genero" id="genero" 
+                                value={values.genero} onChange={handleChange} onBlur={handleErrorGenero} aria-errormessage="generoError" aria-invalid={values.genero} 
+                                required
+                            />
+                        <label className="radioLabel" for='hombre'>Hombre</label>
+                        <input type="radio" name="genero" id="genero" 
+                                value={values.genero} onChange={handleChange} onBlur={handleErrorGenero} aria-errormessage="generoError" aria-invalid={values.genero} 
+                                required
+                            />
+                        <label className="radioLabel" for='mujer'>Mujer</label>
+                        <input type="radio" name="genero" id="genero" 
+                                value={values.genero} onChange={handleChange} onBlur={handleErrorGenero} aria-errormessage="generoError" aria-invalid={values.genero} 
+                                required
+                            />
+                        <label className="radioLabel"  for='otro'>Otro</label>
+                        <span className="error" id="generoError" aria-live="assertive" style={{visibility: values.generoError ? "visible" : "hidden", fontSize:'12px', fontFamily:'Sura', height:'10px', marginRight:'80px', color:'#76674ac5', fontWeight:'bold'}}>
+                            No ha seleccionado ninguna opción.
+                        </span>
+                    </fieldset>
+
+
                     <input className="formulario__input" type="text" name="usuario" id="usuario" placeholder="Nombre de usuario" 
                             value={values.usuario} onChange={handleChange} onBlur={handleUsuarioError} aria-errormessage="usuarioError" aria-invalid={values.usuarioError} 
                             required 

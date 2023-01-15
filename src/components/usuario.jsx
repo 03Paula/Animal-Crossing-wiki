@@ -4,11 +4,13 @@ import Button from "./boton";
 import HeaderRegistro from "./headerRegistro";
 import Flecha from "./flecha";
 import FooterUsuario from "./footerUsuario";
+import Inactividad from "./inactividad";
 
 function Usuario(){
     return(
         <html>
             <HeaderRegistro />
+            <Inactividad />
             <main>
                 <section className="usuario">
                     <section className="imagen-usuario">
@@ -31,7 +33,7 @@ function Usuario(){
                 </section>
 
                 <section className="mostrar-favorito">
-                    <h5>Favoritos</h5>
+                    <h5 id="Favoritos" >Favoritos</h5>
                     <Flecha 
                         url="/listado.html"
                     />

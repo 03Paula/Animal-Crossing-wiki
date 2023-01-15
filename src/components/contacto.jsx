@@ -1,11 +1,64 @@
-import React from "react";
+import React, { useState } from "react";
 import HeaderRegistro from "./headerRegistro";
-import Button from "./boton";
+import BotonSesion from "./botonSesion";
+import { useNavigate } from "react-router-dom";
+import Inactividad from "./inactividad";
+
+const regNombre = new RegExp(/^[A-z]{3,}[\s]*[A-z]*/);
+const regEmail =  new RegExp(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/);
 
 function Contacto() {
+
+    const navigate = useNavigate();
+
+    const [values, Setvalues] = useState({
+        nombre:'',
+        email:'',
+        comentario:'',
+
+        nombreError:false,
+        emailError:false,
+        comentarioError:false,
+    });
+
+    function handleSubmit(e){
+        e.preventDefault();
+
+        if(!values.nombreError && !values.emailError){
+            alert('Su comentario ha sido enviado');
+            navigate('/listado.html');
+        }
+    }
+
+    function handleChange(e){
+        const { target } = e;
+        const { name, value } = target;
+        const newValues ={
+            ...values, [name]: value
+        };
+
+        Setvalues(newValues);
+    }
+
+    function handleNombreError(){
+        const nombreError = !regNombre.test(values.nombre);
+        Setvalues((prevState) => ({ ...prevState, nombreError}));
+    }
+
+    function handleEmailError(){
+        const emailError = !regEmail.test(values.email);
+        Setvalues((prevState) => ({ ...prevState, emailError}));
+    }
+
+    function handleComentarioError(){
+        const comentarioError = (values.comentario.length != 0);
+        Setvalues((prevState) => ({ ...prevState, comentarioError}));
+    }
+
     return(
         <html>
             <HeaderRegistro />
+            <Inactividad />
             <main>
                 <section className="contactanos">
                     <article className="contactar1">
@@ -20,16 +73,34 @@ function Contacto() {
                     </article>
 
                     <article className="contactar2">
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <label className="contactar2__label" for="Nombre">Nombre Completo</label>
-                            <input className="contactar2__input" type="text" name="Nombre" id="Nombre" required />
-                            <label className="contactar2__label" for="Email">Email</label>
-                            <input className="contactar2__input" type="email" name="Email" id="Email" required />
+                            <input className="contactar2__input" type="text" name="Nombre" id="Nombre" 
+                                value={values.nombre} onChange={handleChange} onBlur={handleNombreError} aria-errormessage="nombreError"  aria-invalid={values.nombreError} 
+                            required 
+                                />
+                            <span className="error" id="nombreError" aria-live="assertive" style={{visibility: values.nombreError ? "visible" : "hidden", fontSize:'12px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
+                                No has introducido un nombre válido.
+                            </span>
+                            <label className="contactar2__label" for="Email" value={values.email} onChange={handleChange} onBlur={handleEmailError} aria-errormessage="emailError"  aria-invalid={values.emailError} 
+                                    required >Email</label>
+                            <input className="contactar2__input" type="email" name="Email" id="Email" 
+                                    value={values.email} onChange={handleChange} onBlur={handleEmailError} aria-errormessage="emailError"  aria-invalid={values.emailError} 
+                                    required 
+                                />
+                            <span className="error" id="emailError" aria-live="assertive" style={{visibility: values.emailError ? "visible" : "hidden", fontSize:'12px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
+                                No has introducido un email válido.
+                            </span>
                             <label className="contactar2__label" for="Comentarios">Comentarios</label>
-                            <textarea className="contactar2__textarea" name="Comentarios" id="Comentarios" placeholder="Escriba su comentario..." required >
+                            <textarea className="contactar2__textarea" name="Comentarios" id="Comentarios" placeholder="Escriba su comentario..." 
+                                value={values.comentario} onChange={handleChange} oonBlur={handleComentarioError} aria-errormessage="comentarioError" aria-invalid={values.comentarioError}
+                                required >
                             </textarea>
-                            <Button 
-                                clasNames='btn--small'
+                            <span className="error" id="comentarioError" aria-live="assertive" style={{visibility: values.comentarioError ? "visible" : "hidden", fontSize:'12px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
+                                No has introducido un comentario.
+                            </span>
+                            <BotonSesion
+                                funcion='handleSubmit'
                                 texto='Enviar'
                             />
                             

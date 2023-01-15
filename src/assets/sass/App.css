@@ -84,6 +84,7 @@ header {
   flex-direction: row;
   align-items: flex-end;
   margin: 15px;
+  cursor: pointer;
 }
 .header__inicioSesion a {
   font-size: 1.5em;
@@ -102,6 +103,7 @@ header {
   flex-direction: row;
   align-items: flex-end;
   margin: 15px;
+  cursor: pointer;
 }
 
 .btn__headerbusqueda {
@@ -130,17 +132,17 @@ header {
 }
 #headerbusqueda--search::-moz-placeholder {
   font-size: 16px;
-  font-weight: bolder;
+  font-weight: 600;
   color: var(--color-primario);
 }
 #headerbusqueda--search:-ms-input-placeholder {
   font-size: 16px;
-  font-weight: bolder;
+  font-weight: 600;
   color: var(--color-primario);
 }
 #headerbusqueda--search::placeholder {
   font-size: 16px;
-  font-weight: bolder;
+  font-weight: 600;
   color: var(--color-primario);
 }
 
@@ -487,6 +489,26 @@ button:hover {
 .btn--mediumDesktop {
   margin-bottom: 20px;
   margin-top: 30px;
+}
+
+fieldset {
+  width: 50%;
+  display: block;
+  margin: auto;
+  background-color: var(--color-input);
+  border-color: transparent;
+  border-radius: 10px;
+}
+fieldset label, fieldset legend {
+  margin-right: 10%;
+  margin-left: 5px;
+  font-family: "Sora", sans-serif;
+  font-size: calc(0.5em + 0.5vw);
+  font-weight: 490;
+  color: var(--color-letra-input);
+}
+fieldset input {
+  margin-left: 15px;
 }
 
 .imagenBienvenida__imagen {

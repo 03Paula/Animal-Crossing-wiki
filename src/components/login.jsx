@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import HeaderRegistro from "./headerRegistro";
 import BotonSesion from './botonSesion';
 import FooterSesion from "./footerSesion";
+import Inactividad from './inactividad';
 
 const usuarios = [
     {nombre:'paula', apellidos:'flor garcía', email:'pflogar@g.educaand.es', numero:'345216789', usuario:'paula', contrasenia:'Pestillo123' },
@@ -83,6 +84,7 @@ function Login()
         <html>
             <main>
             <HeaderRegistro />
+            <Inactividad />
             <section className="formulario">
             <h2 className="formulario__h2">Inicio de Sesión</h2>
                 <form onSubmit={handleSubmit}>

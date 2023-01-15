@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./headerIndex";
 import Button from "./boton";
 import RedSocial from "./redSocial";
+import Inactividad from "./inactividad";
 
 function Index(){
 
@@ -9,6 +10,7 @@ function Index(){
         <html>
             <body>
             <Header />
+            <Inactividad />
             <audio autoplay loop>
                 <source
                   src={require('../assets/audio/Animal Crossing - Bubblegum K.K. [Remix].mp3')}
