@@ -14,7 +14,7 @@ function Carta({personajes}){
                             <img src={item.image_uri} alt="" />
                             <h6><img className='icono' src={item.icon_uri} /> {item.name['name-USen']}</h6>
                             <div className="container">
-                            <p>Personality:{item.personality}</p>
+                            <p>Personality: {item.personality}</p>
                             <p>Birthday: {item.birthday}</p>
                             <p>Species: {item.species}</p>
                             <p>Gender: {item.gender}</p>

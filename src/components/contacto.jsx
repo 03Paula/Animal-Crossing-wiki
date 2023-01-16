@@ -12,19 +12,19 @@ function Contacto() {
     const navigate = useNavigate();
 
     const [values, Setvalues] = useState({
-        nombre:'',
-        email:'',
+        nombreCompleto:'',
+        emailContacto:'',
         comentario:'',
 
-        nombreError:false,
-        emailError:false,
+        nombreCompletoError:false,
+        emailContactoError:false,
         comentarioError:false,
     });
 
     function handleSubmit(e){
         e.preventDefault();
 
-        if(!values.nombreError && !values.emailError){
+        if(!values.nombreCompletoError && !values.emailContactoError){
             alert('Su comentario ha sido enviado');
             navigate('/listado.html');
         }
@@ -40,18 +40,18 @@ function Contacto() {
         Setvalues(newValues);
     }
 
-    function handleNombreError(){
-        const nombreError = !regNombre.test(values.nombre);
-        Setvalues((prevState) => ({ ...prevState, nombreError}));
+    function handleNombreCompletoError(){
+        const nombreCompletoError = !regNombre.test(values.nombreCompleto);
+        Setvalues((prevState) => ({ ...prevState, nombreCompletoError}));
     }
 
-    function handleEmailError(){
-        const emailError = !regEmail.test(values.email);
-        Setvalues((prevState) => ({ ...prevState, emailError}));
+    function handleEmailContactoError(){
+        const emailContactoError = !regEmail.test(values.emailContacto);
+        Setvalues((prevState) => ({ ...prevState, emailContactoError}));
     }
 
     function handleComentarioError(){
-        const comentarioError = (values.comentario.length != 0);
+        const comentarioError = (values.comentario.length !== 0);
         Setvalues((prevState) => ({ ...prevState, comentarioError}));
     }
 
@@ -74,21 +74,21 @@ function Contacto() {
 
                     <article className="contactar2">
                         <form onSubmit={handleSubmit}>
-                            <label className="contactar2__label" for="Nombre">Nombre Completo</label>
-                            <input className="contactar2__input" type="text" name="Nombre" id="Nombre" 
-                                value={values.nombre} onChange={handleChange} onBlur={handleNombreError} aria-errormessage="nombreError"  aria-invalid={values.nombreError} 
+                            <label className="contactar2__label" for="nombre">Nombre Completo</label>
+                            <input className="contactar2__input" type="text" name="nombre" id="nombre" 
+                                value={values.nombre} onChange={handleChange} onBlur={handleNombreCompletoError} aria-errormessage="nombreCompletoError"  aria-invalid={values.nombreCompletoError} 
                             required 
                                 />
-                            <span className="error" id="nombreError" aria-live="assertive" style={{visibility: values.nombreError ? "visible" : "hidden", fontSize:'12px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
+                            <span className="error" id="nombreCompletoError" aria-live="assertive" style={{visibility: values.nombreCompletoError ? "visible" : "hidden", fontSize:'12px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
                                 No has introducido un nombre válido.
                             </span>
-                            <label className="contactar2__label" for="Email" value={values.email} onChange={handleChange} onBlur={handleEmailError} aria-errormessage="emailError"  aria-invalid={values.emailError} 
+                            <label className="contactar2__label" for="email" value={values.emailContacto} onChange={handleChange} onBlur={handleEmailContactoError} aria-errormessage="emailContactoError"  aria-invalid={values.emailContactoError} 
                                     required >Email</label>
-                            <input className="contactar2__input" type="email" name="Email" id="Email" 
-                                    value={values.email} onChange={handleChange} onBlur={handleEmailError} aria-errormessage="emailError"  aria-invalid={values.emailError} 
+                            <input className="contactar2__input" type="email" name="email" id="email" 
+                                    value={values.emailContacto} onChange={handleChange} onBlur={handleEmailContactoError} aria-errormessage="emailContactoError"  aria-invalid={values.emailContactoError} 
                                     required 
                                 />
-                            <span className="error" id="emailError" aria-live="assertive" style={{visibility: values.emailError ? "visible" : "hidden", fontSize:'12px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
+                            <span className="error" id="emailContactoError" aria-live="assertive" style={{visibility: values.emailContactoError ? "visible" : "hidden", fontSize:'12px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
                                 No has introducido un email válido.
                             </span>
                             <label className="contactar2__label" for="Comentarios">Comentarios</label>
