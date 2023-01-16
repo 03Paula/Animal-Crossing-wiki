@@ -1,4 +1,17 @@
+/**
+ * @file botonTema.jsx
+ * @author Paula Flor García
+ */
+
 import React, { useState, useEffect } from 'react';
+
+/**
+ * Componente para el botón de cambio de tema.
+ * El tema se almacenará en el localStorage y cuando hagamos click al botón
+ * el tema cambiará.
+ * Por defecto el tema es claro.
+ * @returns {JSX}
+ */
 
 function BotonTema()
 {

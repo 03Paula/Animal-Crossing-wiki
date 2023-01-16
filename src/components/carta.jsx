@@ -1,8 +1,22 @@
-import React from "react"; 
-import BotonSesion from "./botonSesion";
+/**
+ * @file carta.jsx
+ * @author Paula Flor García
+ */
 
+import React from "react"; 
+
+/**
+ * @param {Array} favorito -> Se almacenaran los personajes favoritos.
+ */
 let favorito = [];
 
+/**
+ * 
+ * @param {string} item.image_uri -> Imagen de cada personaje.
+ * @param {string} item.icon_uri -> Icono de cada personaje.
+ * @param {string} item.name -> Muestra el nombre del personaje.
+ * @returns 
+ */
 function Carta({personajes}){
 
     return (

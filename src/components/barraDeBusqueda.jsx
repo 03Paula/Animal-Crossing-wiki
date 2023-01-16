@@ -1,4 +1,13 @@
 import React from "react";
+/**
+ * @file barraDeBusqueda.jsx 
+ * @author Paula Flor García
+ */
+
+/**
+ * Componente para poder realizar busquedas.
+ * @returns {JSX}
+ */
 
 function Busqueda(){
     return(
