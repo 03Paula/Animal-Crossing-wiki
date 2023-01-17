@@ -17,15 +17,15 @@ let favorito = [];
 /**
  * Devuelve los datos de la Api
  * 
- * @param {string} item.image_uri - Imagen de cada personaje.
- * @param {string} item.icon_uri - Icono de cada personaje.
- * @param {string} item.name - Muestra el nombre del personaje.
- * @param {string} item.personality - Muestra la personalidad del personaje.
- * @param {string} item.birthday - Muestra el cumpleaños del personaje.
- * @param {string} item.species - Muestra la especie del personaje.
- * @param {string} item.gender - Muestra el género del personaje.
- * @param {string} item.hobby - Muestra el hobby del personaje.
- * @param {string} item.saying - Muestra su frase.
+ * @param {string} item.image_uri - Imagen de cada pez,insecto o criatura.
+ * @param {string} item.icon_uri - Icono de cada pez,insecto o criatura.
+ * @param {string} item.name - Muestra el nombre del pez,insecto o criatura.
+ * @param {string} item.availability - Muestra los meses en números que está en el hemisferio norte.
+ * @param {string} item.availability - Muestra los meses en números que está en el hemisferio sur.
+ * @param {string} item.availability - Muestra donde se consigue.
+ * @param {string} item.availability - Muestra el nivel de rareza.
+ * @param {string} item.shadow - Muestra la sombra si tiene, si no estará en blanco.
+ * @param {string} item.price - Muestra su el precio al que se vende.
  * @memberof module:Carta
  * 
  * @returns {JSX}
@@ -38,15 +38,15 @@ function Carta({personajes}){
                 personajes.map((item , index) => (
                     <div key={index} className="col">
                         <div className="card" style={{minWidth: '200px'}}>
-                            <img src={item.image_uri} alt="" />
+                            <img className="imagen" src={item.image_uri} alt="" />
                             <h6><img className='icono' src={item.icon_uri} /> {item.name['name-USen']}</h6>
                             <div className="container">
-                            <p>Personality: {item.personality}</p>
-                            <p>Birthday: {item.birthday}</p>
-                            <p>Species: {item.species}</p>
-                            <p>Gender: {item.gender}</p>
-                            <p>Hobby: {item.hobby}</p>
-                            <p>Phrase: {item.saying}</p>
+                            <p>Availability Nothern: {item.availability['month-northern']}</p>
+                            <p>Availability Southern: {item.availability['month-southern']}</p>
+                            <p>Location: {item.availability['location']}</p>
+                            <p>Rarity: {item.availability['rarity']}</p>
+                            <p> Shadow: {item.shadow}</p>
+                            <p>Price: {item.price}</p>
                             </div>
                             <button className="btn--mediumDesktop" onClick={favorito.unshift(item.id)}>Add to favourites</button>
                         </div>

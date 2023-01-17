@@ -47,9 +47,8 @@ function Index(){
                     <p className="p-desktop inicio__bienvenida--p">
                         Bienvenid@ a la wiki de Animal Crossing 
                         donde podrás encontrar toda la información 
-                        relativa al juego de Animal Crossing New 
-                        Horizon,como los personajes, fósiles, peces, 
-                        insectos,obras de arte, música ...
+                        relativa a los personajes del juego de Animal Crossing New 
+                        Horizon.
                     </p>
                     <Button 
                         className="btn--largeDesktop"

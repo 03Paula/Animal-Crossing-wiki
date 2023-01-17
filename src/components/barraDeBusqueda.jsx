@@ -13,14 +13,18 @@ import React from "react";
  * @memberof module:Busqueda 
  * @returns {JSX}
  */
-
-function Busqueda(props){
+const Busqueda = ({ setNombre}) => {
+    let searchBtn= (e) => {
+      e.preventDefault();
+    };
     return(
-        <section>
-            <input id="headerbusqueda--search" type="search" placeholder="Buscar..." value='personaje'/>
-            <button className="btn__headerbusqueda"><img id="header__busqueda__img" src={require('../assets/img/Vector.png')} onClick={props.funcion}/></button>
-        </section>
+        <form>
+            <input onChange={(e) => {
+                setNombre(e.target.value)
+                }} id="headerbusqueda--search" type="text" placeholder="Buscar..." 
+            />
+            <button onClick={searchBtn} className="btn__headerbusqueda"><img id="header__busqueda__img" src={require('../assets/img/Vector.png')} alt="" /></button>
+        </form>
     )
-}
-
+  };
 export default Busqueda;

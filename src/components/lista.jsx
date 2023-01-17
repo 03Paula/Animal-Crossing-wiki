@@ -23,73 +23,82 @@ import FooterSesion from "./footerSesion";
 
 function Lista(){
 
-    const [personajes, setPersonajes] = useState([]);
-    const [nombre, setNombre] = useState('');
-    const [nombreOrdenado, setNombreOrnado] = useState(undefined);
+    let [personajes, setPersonajes] = useState([]);
+    let {info , results} = personajes;
+    let [nombre, setNombre] = useState('');
 
-    const inicialUrl = "http://acnhapi.com/v1a/villagers";
+    let inicialUrl = `http://acnhapi.com/v1a/fish`;
 
     /**
-     * @description Función que actualiza los valores con los introducidos por el input.
-     * @name handleChange
-     * @function 
-     * @param e 
+     * @description Cambia la url para que se pueda visualizar los peces 
+     * @name visualizarPeces
+     * @function
      * @memberof module:Lista
      * 
      */
-    function handleChange(e){
-        const { target } = e;
-        const { name, value} = target;
-        const newValues = {
-            ...nombre, [name]:value
-        };
 
-        setNombre(newValues)
+    function visualizarPeces(){
+        inicialUrl = `http://acnhapi.com/v1a/fish`;
+        (async function () {
+            let data = await fetch(inicialUrl).then((res) => res.json());
+            setPersonajes(data)
+          })();
+        console.log(inicialUrl)
     }
 
-
-    function handleBuscarPersonaje(){
-        for (let i = 0; i < personajes.length ; i ++){
-            let personaje = personajes[i]
-            if(Object.values(personaje) == nombre){
-                personajes = personajes[i];
-            }
-        }
-    }
-   
     /**
-     * @description Enlaza la api y nos devuelve los datos.
-     * @name fetchResultados
+     * @description Cambia la url para que se pueda visualizar los insectos 
+     * @name visualizarInsectos
      * @function
-     * @param {string} url Url de la api
+     * @memberof module:Lista
+     * 
      */
-    const fetchResultados = (url) => {
-        fetch(url)
-            .then(response => response.json())
-            .then(data => setPersonajes(data))
-            .catch(error => console.log(error))
-    } 
+
+    function visualizarInsectos(){
+        inicialUrl = `http://acnhapi.com/v1a/bugs`;
+        (async function () {
+            let data = await fetch(inicialUrl).then((res) => res.json());
+            setPersonajes(data)
+          })();
+    }
+
+    /**
+     * @description Cambia la url para que se pueda visualizar los criaturas marinas. 
+     * @name visualizarCriaturas
+     * @function
+     * @memberof module:Lista
+     * 
+     */
+
+    function visualizarCriaturas(){
+        inicialUrl = `https://acnhapi.com/v1a/sea`;
+        (async function () {
+            let data = await fetch(inicialUrl).then((res) => res.json());
+            setPersonajes(data)
+          })();
+    }
 
     useEffect(() => {
-        fetchResultados(inicialUrl);
-    },[])
+        (async function () {
+          let data = await fetch(inicialUrl).then((res) => res.json());
+          setPersonajes(data)
+        })();
+      }, [inicialUrl]);
 
     return(
         <>
             <HeaderLista />
             <Inactividad />
             <main>
-            <input id="headerbusqueda--search" type="search" placeholder="Buscar..." name='nombre' onChange={handleChange} value={nombre}/>
-            <button className="btn__headerbusqueda"><img id="header__busqueda__img" src={require('../assets/img/Vector.png')} onClick={handleBuscarPersonaje}/></button>
+            <Busqueda setNombre={setNombre} />
             <section class="filtrado">
                 <label class="filtrado__label" for="filtrar">Filtrar por: </label>
-                    <select class="filtrado__select" name="categoria" id="filtrar" >
-                        <option class="filtrado__opciones" value="vecinos">Vecinos</option>
-                        <option class="filtrado__opciones" value="insectos" >Insectos</option>                        
-                        <option class="filtrado__opciones" value="peces">Peces</option>
-
-                    </select>
             </section>
+            <div className='filtro'>
+                <button type="submit" className="btn--mediumDesktop" onClick={visualizarPeces}>Peces</button>
+                <button type="submit" className="btn--mediumDesktop" onClick={visualizarInsectos}>Insectos</button>
+                <button type="submit" className="btn--mediumDesktop" onClick={visualizarCriaturas}>Criaturas marinas</button>
+            </div>
             <div className="lista">
                 <Carta personajes={personajes} />
             </div>
