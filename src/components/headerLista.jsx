@@ -26,9 +26,11 @@ function HeaderLista()
             <section className="header" >
                 <img className="header__logo" src={require('../assets/img/logo.webp')} onClick={() => navigate('/')} alt="Logo del Animal Crossing"/>
                 <section className="headerbusqueda">
-                        <img src={require('../assets/img/corazon.png')} className="headerbusqueda__img--favorito" alt="icono de corazón" />
-                        <p className="headerbusqueda__p headerbusqueda__favorito" onClick={() => navigate('/usuario.html')}>Favoritos</p>
-                        <img src={require('../assets/img/Resetti.png')} className="header--imagenRedonda" onClick={() => navigate('/usuario.html')} alt="avatar del usuario" />
+                        <img src={require('../assets/img/persona.png')} onClick={() => navigate('/inicioSesion.html')} alt="Icono de una persona" style={{visibility: localStorage.getItem('usuario') ? "hidden" : "visible" }} />
+                        <p style={{visibility: localStorage.getItem('usuario') ? "hidden" : "visible" }}><a href="inicioSesion.html">Iniciar Sesion</a></p>
+                        <img src={require('../assets/img/corazon.png')} className="headerbusqueda__img--favorito" alt="icono de corazón" style={{visibility: localStorage.getItem('usuario') ? "visible" : "hidden" }} />
+                        <p className="headerbusqueda__p headerbusqueda__favorito" onClick={() => navigate('/usuario.html')} style={{visibility: localStorage.getItem('usuario') ? "visible" : "hidden" }}>Favoritos</p>
+                        <img src={require('../assets/img/Resetti.png')} className="header--imagenRedonda" onClick={() => navigate('/usuario.html')} alt="avatar del usuario"  style={{visibility: localStorage.getItem('usuario') ? "visible" : "hidden" }} />
                         <p className="headerbusqueda__p" onClick={() => navigate('/usuario.html')}>{localStorage.getItem('usuario')}</p>
                         <BotonTema />
                 </section>

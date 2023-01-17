@@ -114,7 +114,7 @@ function Contacto() {
      * @memberof module:Contacto
      */
     function handleComentarioError(){
-        const comentarioError = !(values.comentario.length >= 10);
+        const comentarioError = !(values.comentario.length <= 10);
         Setvalues((prevState) => ({ ...prevState, comentarioError}));
     }
 
@@ -137,31 +137,33 @@ function Contacto() {
 
                     <article className="contactar2">
                         <form onSubmit={handleSubmit}>
-                            <label className="contactar2__label" for="nombre">Nombre Completo</label>
-                            <input className="contactar2__input" type="text" name="nombre" id="nombre" 
+                            <label className="contactar2__label" for="nombreCompleto">Nombre Completo</label>
+                            <input className="contactar2__input" type="text" name="nombreCompleto" id="nombre" 
                                 value={values.nombre} onChange={handleChange} onBlur={handleNombreCompletoError} aria-errormessage="nombreCompletoError"  aria-invalid={values.nombreCompletoError} 
                             required 
                                 />
                             <span className="error" id="nombreCompletoError" aria-live="assertive" style={{visibility: values.nombreCompletoError ? "visible" : "hidden", fontSize:'12px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
                                 No has introducido un nombre válido.
                             </span>
-                            <label className="contactar2__label" for="email" value={values.emailContacto} onChange={handleChange} onBlur={handleEmailContactoError} aria-errormessage="emailContactoError"  aria-invalid={values.emailContactoError} 
+                            <label className="contactar2__label" for="emailContacto" value={values.emailContacto} onChange={handleChange} onBlur={handleEmailContactoError} aria-errormessage="emailContactoError"  aria-invalid={values.emailContactoError} 
                                     required >Email</label>
-                            <input className="contactar2__input" type="email" name="email" id="email" 
+                            <input className="contactar2__input" type="email" name="emailContacto" id="email" 
                                     value={values.emailContacto} onChange={handleChange} onBlur={handleEmailContactoError} aria-errormessage="emailContactoError"  aria-invalid={values.emailContactoError} 
                                     required 
                                 />
                             <span className="error" id="emailContactoError" aria-live="assertive" style={{visibility: values.emailContactoError ? "visible" : "hidden", fontSize:'12px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
                                 No has introducido un email válido.
                             </span>
-                            <label className="contactar2__label" for="Comentarios">Comentarios</label>
-                            <textarea className="contactar2__textarea" name="Comentarios" id="Comentarios" placeholder="Escriba su comentario..." 
+                            <label className="contactar2__label" for="comentario">Comentarios</label>
+                            <textarea className="contactar2__textarea" name="comentario" id="Comentarios" placeholder="Escriba su comentario..." 
                                 value={values.comentario} onChange={handleChange} oonBlur={handleComentarioError} aria-errormessage="comentarioError" aria-invalid={values.comentarioError}
                                 required >
                             </textarea>
                             <span className="error" id="comentarioError" aria-live="assertive" style={{visibility: values.comentarioError ? "visible" : "hidden", fontSize:'12px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
                                 No has introducido un comentario.
                             </span>
+                            <input type='checkbox' id="copia" name="copia" />
+                            <label id="recibirCopia" for='copia'>Deseo obtener una copia de mi comentario por email.</label>
                             <BotonSesion
                                 funcion='handleSubmit'
                                 texto='Enviar'

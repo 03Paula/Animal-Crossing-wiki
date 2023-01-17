@@ -54,6 +54,23 @@
         margin-left: 80px;
         padding-top: 10vh;
 
+        #copia{
+            position: absolute;
+            bottom: 130px;
+            display: flex;
+
+        }
+        #recibirCopia{
+            color: var(--color-letra);
+            font-size: 16px;
+            margin-left: 15px;
+            display: flex;
+            position: absolute;
+            bottom: 124px;
+
+
+        }
+
         button{
             margin-right: 500px;
             position: absolute;

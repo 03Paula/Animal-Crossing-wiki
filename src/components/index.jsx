@@ -4,6 +4,7 @@
  */
 
 import React from "react";
+import ReactAudioPlayer from 'react-audio-player';
 import Header from "./headerIndex";
 import Button from "./boton";
 import RedSocial from "./redSocial";
@@ -26,12 +27,13 @@ function Index(){
             <body>
             <Header />
             <Inactividad />
-            <audio autoplay loop>
-                <source
-                  src={require('../assets/audio/Animal Crossing - Bubblegum K.K. [Remix].mp3')}
-                  type="audio/mp3" />
-            </audio>
-            
+            <ReactAudioPlayer
+                src={require("../assets/audio/Bubblegum.mp3")}
+                autoPlay
+                controls
+                
+            />
+               
             <section className="inicio">
                 <section className="inicio__imagen2">
                     <img id="inicio__imagen2--juego" src={require('../assets/img/foto3.jpg')} alt="Imagen del juego animal Crossing New Horizons" />
@@ -47,7 +49,8 @@ function Index(){
                     <p className="p-desktop inicio__bienvenida--p">
                         Bienvenid@ a la wiki de Animal Crossing 
                         donde podrás encontrar toda la información 
-                        relativa a los personajes del juego de Animal Crossing New 
+                        relativa a los peces, criaturas marinas y insectos 
+                        del juego de Animal Crossing New 
                         Horizon.
                     </p>
                     <Button 

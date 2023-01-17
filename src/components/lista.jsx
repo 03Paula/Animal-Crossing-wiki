@@ -24,7 +24,6 @@ import FooterSesion from "./footerSesion";
 function Lista(){
 
     let [personajes, setPersonajes] = useState([]);
-    let {info , results} = personajes;
     let [nombre, setNombre] = useState('');
 
     let inicialUrl = `http://acnhapi.com/v1a/fish`;
@@ -38,7 +37,7 @@ function Lista(){
      */
 
     function visualizarPeces(){
-        inicialUrl = `http://acnhapi.com/v1a/fish`;
+        inicialUrl = `http://acnhapi.com/v1a/fish/?nombre=${nombre}`;
         (async function () {
             let data = await fetch(inicialUrl).then((res) => res.json());
             setPersonajes(data)
