@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: contacto.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: contacto.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @file contacto.jsx
+ * @author Paula Flor García
+ */
+
+import React, { useState } from "react";
+import HeaderRegistro from "./headerRegistro";
+import BotonSesion from "./botonSesion";
+import { useNavigate } from "react-router-dom";
+import Inactividad from "./inactividad";
+import RedSocial from "./redSocial";
+
+/**
+ * Expresión regular para el nombre, en el que se darán por validos los valores de más de 3 letras y los espacios, para los nombre que son compuestos.
+ * @type {Object}
+ */
+
+const regNombre = new RegExp(/^[A-z]{3,}[\s]*[A-z]*/);
+
+/**
+// Expresión regular para el email.
+ * @type {Object}
+ */
+
+const regEmail =  new RegExp(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/);
+/**
+ * @module Contacto
+ */
+
+/**
+ * Componente de la página de contacto.
+ * @memberof module:Contacto
+ * 
+ * @returns {JSX}
+ */
+
+function Contacto() {
+
+    const navigate = useNavigate();
+
+    const [values, Setvalues] = useState({
+        nombreCompleto:'',
+        emailContacto:'',
+        comentario:'',
+
+        nombreCompletoError:false,
+        emailContactoError:false,
+        comentarioError:false,
+    });
+
+    /**
+     * @description Función que comprueba si todo está correcto aparecerá el mensaje y redigirá al listado
+     * @name handleSubmit
+     * @function
+     * @param e 
+     * @memberof module:Contacto
+     */
+
+    function handleSubmit(e){
+        e.preventDefault();
+
+        if(!values.nombreCompletoError &amp;&amp; !values.emailContactoError){
+            alert('Su comentario ha sido enviado');
+            navigate('/listado.html');
+        }
+    }
+
+    /**
+     * @description Función que actualiza los valores con los introducidos por el input.
+     * @name handleChange
+     * @function
+     * @param e 
+     * @memberof module:Contacto
+     */
+
+    function handleChange(e){
+        const { target } = e;
+        const { name, value } = target;
+        const newValues ={
+            ...values, [name]: value
+        };
+
+        Setvalues(newValues);
+    }
+
+    /**
+     * @description Función que dependiendo de si el nombre pasa o no la expresión regular, cambia el valor a la variable nombreCompletoError, que es la que hace que aparezca o no el mensaje de error.
+     * @name handleNombreCompletoError
+     * @function 
+     * @memberof module:Contacto
+     */
+
+    function handleNombreCompletoError(){
+        const nombreCompletoError = !regNombre.test(values.nombreCompleto);
+        Setvalues((prevState) => ({ ...prevState, nombreCompletoError}));
+    }
+
+    /**
+     * @description Función que dependiendo de si el email pasa o no la expresión regular, cambia el valor a la variable emailContactoError, que es la que hace que aparezca o no el mensaje de error.
+     * @name handleEmailContactoError
+     * @function
+     * @memberof module:Contacto
+     */
+
+    function handleEmailContactoError(){
+        const emailContactoError = !regEmail.test(values.emailContacto);
+        Setvalues((prevState) => ({ ...prevState, emailContactoError}));
+    }
+
+    /**
+     * @description Función que dependiendo de si el comentario es mayor de 10 palabras, si no es así aparece el mensaje.
+     * @name handleComentarioError
+     * @function 
+     * @memberof module:Contacto
+     */
+    function handleComentarioError(){
+        const comentarioError = !(values.comentario.length >= 10);
+        Setvalues((prevState) => ({ ...prevState, comentarioError}));
+    }
+
+    return(
+        &lt;html>
+            &lt;HeaderRegistro />
+            &lt;Inactividad />
+            &lt;main>
+                &lt;section className="contactanos">
+                    &lt;article className="contactar1">
+                        &lt;h2 className="contactar1__h2">Contáctanos&lt;/h2>
+
+                        &lt;h6 className="contactar1__h6">Si tienes alguna duda, comentario o 
+                            sugerencia, puedes contactarnos y
+                            nos comunicaremos contigo lo
+                            antes posible.
+                        &lt;/h6>
+                        &lt;img id="contactar1__mabel" src={require("../assets/img/Mabel_NH.webp")} />
+                    &lt;/article>
+
+                    &lt;article className="contactar2">
+                        &lt;form onSubmit={handleSubmit}>
+                            &lt;label className="contactar2__label" for="nombre">Nombre Completo&lt;/label>
+                            &lt;input className="contactar2__input" type="text" name="nombre" id="nombre" 
+                                value={values.nombre} onChange={handleChange} onBlur={handleNombreCompletoError} aria-errormessage="nombreCompletoError"  aria-invalid={values.nombreCompletoError} 
+                            required 
+                                />
+                            &lt;span className="error" id="nombreCompletoError" aria-live="assertive" style={{visibility: values.nombreCompletoError ? "visible" : "hidden", fontSize:'12px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
+                                No has introducido un nombre válido.
+                            &lt;/span>
+                            &lt;label className="contactar2__label" for="email" value={values.emailContacto} onChange={handleChange} onBlur={handleEmailContactoError} aria-errormessage="emailContactoError"  aria-invalid={values.emailContactoError} 
+                                    required >Email&lt;/label>
+                            &lt;input className="contactar2__input" type="email" name="email" id="email" 
+                                    value={values.emailContacto} onChange={handleChange} onBlur={handleEmailContactoError} aria-errormessage="emailContactoError"  aria-invalid={values.emailContactoError} 
+                                    required 
+                                />
+                            &lt;span className="error" id="emailContactoError" aria-live="assertive" style={{visibility: values.emailContactoError ? "visible" : "hidden", fontSize:'12px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
+                                No has introducido un email válido.
+                            &lt;/span>
+                            &lt;label className="contactar2__label" for="Comentarios">Comentarios&lt;/label>
+                            &lt;textarea className="contactar2__textarea" name="Comentarios" id="Comentarios" placeholder="Escriba su comentario..." 
+                                value={values.comentario} onChange={handleChange} oonBlur={handleComentarioError} aria-errormessage="comentarioError" aria-invalid={values.comentarioError}
+                                required >
+                            &lt;/textarea>
+                            &lt;span className="error" id="comentarioError" aria-live="assertive" style={{visibility: values.comentarioError ? "visible" : "hidden", fontSize:'12px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
+                                No has introducido un comentario.
+                            &lt;/span>
+                            &lt;BotonSesion
+                                funcion='handleSubmit'
+                                texto='Enviar'
+                            />
+                            
+                        &lt;/form>
+        
+                        &lt;article className="contactar2__redesSociales">
+                            &lt;RedSocial 
+                                className="footerSesion__redes"
+                                img="twitter.png"
+                                onClick="https://twitter.com"
+                            />
+
+                            &lt;RedSocial
+                                className="footerSesion__redes"
+                                img="discord.png"
+                                onClick="https://discord.com"
+                            />
+
+                            &lt;RedSocial 
+                                className="footerSesion__redes"
+                                img="facebook.png"
+                                onClick="https://es-es.facebook.com"
+                            />
+
+                            &lt;RedSocial 
+                                className="footerSesion__redes"
+                                img="instagram.png"
+                                onClick="https://www.instagram.com"
+                            />
+                        &lt;/article>
+                    &lt;/article>
+
+                &lt;/section>
+            &lt;/main>
+        &lt;/html>
+    )
+}
+
+export default Contacto;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-BotonCerrarSesion.html">BotonCerrarSesion</a></li><li><a href="module-BotonSesion.html">BotonSesion</a></li><li><a href="module-BotonTema.html">BotonTema</a></li><li><a href="module-Busqueda.html">Busqueda</a></li><li><a href="module-Button.html">Button</a></li><li><a href="module-Carta.html">Carta</a></li><li><a href="module-Contacto.html">Contacto</a></li><li><a href="module-Error404.html">Error404</a></li><li><a href="module-Flecha.html">Flecha</a></li><li><a href="module-Footer.html">Footer</a></li><li><a href="module-FooterSesion.html">FooterSesion</a></li><li><a href="module-FooterUsuario.html">FooterUsuario</a></li><li><a href="module-Header.html">Header</a></li><li><a href="module-HeaderLista.html">HeaderLista</a></li><li><a href="module-HeaderRegistro.html">HeaderRegistro</a></li><li><a href="module-Inactividad.html">Inactividad</a></li><li><a href="module-Index.html">Index</a></li><li><a href="module-Lista.html">Lista</a></li><li><a href="module-Login.html">Login</a></li><li><a href="module-RedSocial.html">RedSocial</a></li><li><a href="module-Registro.html">Registro</a></li><li><a href="module-Usuario.html">Usuario</a></li></ul><h3>Global</h3><ul><li><a href="global.html#favorito">favorito</a></li><li><a href="global.html#regContrasenia">regContrasenia</a></li><li><a href="global.html#regEmail">regEmail</a></li><li><a href="global.html#regNombre">regNombre</a></li><li><a href="global.html#regNombreUsu">regNombreUsu</a></li><li><a href="global.html#regTel">regTel</a></li><li><a href="global.html#tiempo">tiempo</a></li><li><a href="global.html#usuarios">usuarios</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Tue Jan 17 2023 17:40:33 GMT+0100 (hora estándar de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

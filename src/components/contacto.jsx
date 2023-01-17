@@ -1,11 +1,38 @@
+/**
+ * @file contacto.jsx
+ * @author Paula Flor García
+ */
+
 import React, { useState } from "react";
 import HeaderRegistro from "./headerRegistro";
 import BotonSesion from "./botonSesion";
 import { useNavigate } from "react-router-dom";
 import Inactividad from "./inactividad";
+import RedSocial from "./redSocial";
+
+/**
+ * Expresión regular para el nombre, en el que se darán por validos los valores de más de 3 letras y los espacios, para los nombre que son compuestos.
+ * @type {Object}
+ */
 
 const regNombre = new RegExp(/^[A-z]{3,}[\s]*[A-z]*/);
+
+/**
+// Expresión regular para el email.
+ * @type {Object}
+ */
+
 const regEmail =  new RegExp(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/);
+/**
+ * @module Contacto
+ */
+
+/**
+ * Componente de la página de contacto.
+ * @memberof module:Contacto
+ * 
+ * @returns {JSX}
+ */
 
 function Contacto() {
 
@@ -21,6 +48,14 @@ function Contacto() {
         comentarioError:false,
     });
 
+    /**
+     * @description Función que comprueba si todo está correcto aparecerá el mensaje y redigirá al listado
+     * @name handleSubmit
+     * @function
+     * @param e 
+     * @memberof module:Contacto
+     */
+
     function handleSubmit(e){
         e.preventDefault();
 
@@ -29,6 +64,14 @@ function Contacto() {
             navigate('/listado.html');
         }
     }
+
+    /**
+     * @description Función que actualiza los valores con los introducidos por el input.
+     * @name handleChange
+     * @function
+     * @param e 
+     * @memberof module:Contacto
+     */
 
     function handleChange(e){
         const { target } = e;
@@ -40,18 +83,38 @@ function Contacto() {
         Setvalues(newValues);
     }
 
+    /**
+     * @description Función que dependiendo de si el nombre pasa o no la expresión regular, cambia el valor a la variable nombreCompletoError, que es la que hace que aparezca o no el mensaje de error.
+     * @name handleNombreCompletoError
+     * @function 
+     * @memberof module:Contacto
+     */
+
     function handleNombreCompletoError(){
         const nombreCompletoError = !regNombre.test(values.nombreCompleto);
         Setvalues((prevState) => ({ ...prevState, nombreCompletoError}));
     }
+
+    /**
+     * @description Función que dependiendo de si el email pasa o no la expresión regular, cambia el valor a la variable emailContactoError, que es la que hace que aparezca o no el mensaje de error.
+     * @name handleEmailContactoError
+     * @function
+     * @memberof module:Contacto
+     */
 
     function handleEmailContactoError(){
         const emailContactoError = !regEmail.test(values.emailContacto);
         Setvalues((prevState) => ({ ...prevState, emailContactoError}));
     }
 
+    /**
+     * @description Función que dependiendo de si el comentario es mayor de 10 palabras, si no es así aparece el mensaje.
+     * @name handleComentarioError
+     * @function 
+     * @memberof module:Contacto
+     */
     function handleComentarioError(){
-        const comentarioError = (values.comentario.length !== 0);
+        const comentarioError = !(values.comentario.length >= 10);
         Setvalues((prevState) => ({ ...prevState, comentarioError}));
     }
 
@@ -107,10 +170,29 @@ function Contacto() {
                         </form>
         
                         <article className="contactar2__redesSociales">
-                            <img className="contactar2__redesSociales__redes" src={require('../assets/img/twitter.png')} onclick="location.href='https://twitter.com/'" />
-                            <img className="contactar2__redesSociales__redes" src={require('../assets/img/discord.png')} onclick="location.href='https://discord.com/'" />
-                            <img className="contactar2__redesSociales__redes" src={require('../assets/img/instagram.png')} onclick="location.href='https://www.instagram.com/'" />
-                            <img className="contactar2__redesSociales__redes" src={require('../assets/img/facebook.png')} onclick="location.href='https://es-es.facebook.com/'" />
+                            <RedSocial 
+                                className="footerSesion__redes"
+                                img="twitter.png"
+                                onClick="https://twitter.com"
+                            />
+
+                            <RedSocial
+                                className="footerSesion__redes"
+                                img="discord.png"
+                                onClick="https://discord.com"
+                            />
+
+                            <RedSocial 
+                                className="footerSesion__redes"
+                                img="facebook.png"
+                                onClick="https://es-es.facebook.com"
+                            />
+
+                            <RedSocial 
+                                className="footerSesion__redes"
+                                img="instagram.png"
+                                onClick="https://www.instagram.com"
+                            />
                         </article>
                     </article>
 

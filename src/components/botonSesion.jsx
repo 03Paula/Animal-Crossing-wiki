@@ -4,11 +4,15 @@
  */
 
 import React from "react";
+/**
+ * @module BotonSesion
+ */
 
 /**
- * 
- * @param {string} props.funcion -> Cuando cliquemos sobre el botón se llevará a cabo la función que se pase.
- * @param {string} props.texto -> Texto que tendrá el botón.
+ * Componente para el Botón de Inicio o Registro de sesión.
+ * @memberof module:BotonSesion
+ * @param {string} props.funcion - Cuando cliquemos sobre el botón se llevará a cabo la función que se pase.
+ * @param {string} props.texto - Texto que tendrá el botón.
  * 
  * @returns {JSX}
  */

@@ -5,15 +5,20 @@ import React from "react";
  */
 
 /**
+ * @module Busqueda
+ */
+
+/**
  * Componente para poder realizar busquedas.
+ * @memberof module:Busqueda 
  * @returns {JSX}
  */
 
-function Busqueda(){
+function Busqueda(props){
     return(
         <section>
-            <input id="headerbusqueda--search" type="search" placeholder="Buscar..." />
-            <button className="btn__headerbusqueda"><img id="header__busqueda__img" src={require('../assets/img/Vector.png')} /></button>
+            <input id="headerbusqueda--search" type="search" placeholder="Buscar..." value='personaje'/>
+            <button className="btn__headerbusqueda"><img id="header__busqueda__img" src={require('../assets/img/Vector.png')} onClick={props.funcion}/></button>
         </section>
     )
 }

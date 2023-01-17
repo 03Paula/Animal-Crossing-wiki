@@ -1,5 +1,20 @@
+/**
+ * @file footerSesion.jsx
+ * @author Paula Flor García.
+ */
+
 import React from "react";
 import RedSocial from "./redSocial";
+/**
+ * @module FooterSesion
+ */
+
+/**
+ * Componente para el footer de las páginas de registro y login.
+ * @memberof module:FooterSesion
+ * 
+ * @returns {JSX}
+ */
 
 function FooterSesion(){
     return(

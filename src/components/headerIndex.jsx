@@ -1,7 +1,20 @@
+/**
+ * @file footerSesion.jsx
+ * @author Paula Flor García.
+ */
 import React from "react";
 import BotonTema from "./botonTema";
 import { useNavigate } from 'react-router-dom';
+/**
+ * @module Header
+ */
 
+/**
+ * Componente para el header
+ * @memberof module:Header
+ * 
+ * @returns {JSX}
+ */
 
 function Header()
 {

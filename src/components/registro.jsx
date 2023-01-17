@@ -1,3 +1,8 @@
+/**
+ * @file footerSesion.jsx
+ * @author Paula Flor García.
+ */
+
 import React, {useState} from "react";
 import HeaderRegistro from "./headerRegistro";
 import FooterSesion from "./footerSesion";
@@ -5,29 +10,54 @@ import BotonSesion from "./botonSesion";
 import Inactividad from "./inactividad";
 import { useNavigate } from "react-router-dom";
 
-const regEmail = new RegExp(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/);
+    /**
+     * Expresión regular para el email.
+     * Para ser válida tiene que tener letras o número al principio, seguido del signo @ y un dominio, luego un . y más letras.
+     * @type {Object}
+     */
+
+    const regEmail = new RegExp(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/);
 
     /**
-     * Minimo 8 caracteres, Maximo 15, Al menos una letra mayúscula, Al menos una letra minucula, Al menos un dígito, 
+     * Expresión regular para la contraseña
+     * Minimo 8 caracteres, Maximo 15, Al menos una letra mayúscula, Al menos una letra minúscula y al menos un dígito. 
+     * @type {Object}
      */
 
     const regContrasenia = new RegExp(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/)
 
+    /**
+     * Expresión regular para el nombre de usuario.
+     * La expresión será válida si tiene entre 4 y 16 letras y/o números.
+     * @type {Object} 
+     */
     const regNombreUsu = new RegExp(/^[\S]{4,16}$/); 
 
     /**
      * Expresion regular para el nombre y apellidos
-     * Podrá tener más de 3 palabras, puede tener o no un espacio y otras palabras.
+     * Podrá tener más de 3 palabras, puede tener o no un espacio y otras palabras, para los nombres que son compuestos.
+     * @type {Object}
      */
 
     const regNombre = new RegExp(/^[A-z]{3,}[\s]*[A-z]*/);
 
     /**
-     * Expresion regular para numeros de telefonos españoles.
+     * Expresion regular para numeros de teléfonos españoles.
      * Serán validos todos aquellos que tengan o no +34 , 34 o 0034 y tengan 9 números ya sean seguidos o separados por guiones.
+     * @type {Object}
      */
+    
     const regTel = new RegExp(/(\+34|0034|34)?[ -]*[ -]*([0-9][ -]*){9}/)
 
+/**
+ * @module Registro
+ */
+
+/**
+ * Componente para la página de registro.
+ * @memberof module:Registro
+ * @returns {JSX}
+ */
 function Registro()
 {
     const navigate = useNavigate();
@@ -52,6 +82,13 @@ function Registro()
         regContrasenia:false
     });
 
+    /**
+     * @description Función que comprueba si todo está correcto aparecerá el mensaje, guardará en el localStorage los datos y redigirá al listado
+     * @name handleSubmit
+     * @function
+     * @memberof module:Registro
+     * @param e 
+     */
     function handleSubmit(e){
         e.preventDefault();
 
@@ -70,6 +107,14 @@ function Registro()
             }
     }
 
+    /**
+     * @description Función que actualiza los valores con los introducidos por el input.
+     * @name handleChange
+     * @function
+     * @param e 
+     * @memberof module:Registro
+     */
+
     function handleChange(e){
         const { target } = e;
         const { name, value } = target;
@@ -80,30 +125,72 @@ function Registro()
         Setvalues(newValues);
     }
 
+    /**
+     * @description Función que dependiendo de si el nombre pasa o no la expresión regular, cambia el valor a la variable nombreError, que es la que hace que aparezca o no el mensaje de error.
+     * @name handleNombreError
+     * @function 
+     * @memberof module:Registro
+     */
+
     function handleNombreError(){
         const nombreError = !regNombre.test(values.nombre);
         Setvalues((prevState) => ({ ...prevState, nombreError}));
     }
+
+    /**
+     * @description Función que dependiendo de si el apellido pasa o no la expresión regular, cambia el valor a la variable apellidoError, que es la que hace que aparezca o no el mensaje de error.
+     * @name handleApellidoError
+     * @function 
+     * @memberof module:Registro
+     */
 
     function handleApellidoError(){
         const apellidosError = !regNombre.test(values.apellidos);
         Setvalues((prevState) => ({ ...prevState, apellidosError}));
     }
 
+    /**
+     * @description Función que dependiendo de si el email pasa o no la expresión regular, cambia el valor a la variable emailError, que es la que hace que aparezca o no el mensaje de error.
+     * @name handleEmailError
+     * @function 
+     * @memberof module:Registro
+     */
+
     function handleEmailError(){
         const emailError = !regEmail.test(values.email);
         Setvalues((prevState) => ({ ...prevState, emailError}));
     }
+
+    /**
+     * @description Función que dependiendo de si el número pasa o no la expresión regular, cambia el valor a la variable numeroError, que es la que hace que aparezca o no el mensaje de error.
+     * @name handleNumeroError
+     * @function 
+     * @memberof module:Registro
+     */
 
     function handleNumeroError(){
         const numeroError = !regTel.test(values.numero);
         Setvalues((prevState) => ({...prevState,numeroError}));
     }
 
+    /**
+     * @description Función que dependiendo de si el nombre de usuario pasa o no la expresión regular, cambia el valor a la constante usuarioError, que es la que hace que aparezca o no el mensaje de error.
+     * @name handleUsuarioError
+     * @function 
+     * @memberof module:Registro
+     */
+
     function handleUsuarioError(){
         const usuarioError = !regNombreUsu.test(values.usuario);
         Setvalues((prevState) => ({ ...prevState, usuarioError}));
     }
+
+    /**
+     * @description Función que dependiendo de si la contraseña pasa o no la expresión regular, cambia el valor a la constante contraseniaError, que es la que hace que aparezca o no el mensaje de error.
+     * @name handleContraseniaError
+     * @function 
+     * @memberof module:Registro
+     */
 
     function handleContraseniaError(){
         const contraseniaError = !regContrasenia.test(values.contrasenia);
@@ -111,13 +198,27 @@ function Registro()
         Setvalues((prevState) => ({ ...prevState, contraseniaError})); 
     }
 
+    /**
+     * @description Función que dependiendo de si la repetición de la contraseña es igual a o no a la contraseña anteriormente introducida, cambia el valor a la constante repContraseniaError, que es la que hace que aparezca o no el mensaje de error.
+     * @name handleRepContraseniaError
+     * @function 
+     * @memberof module:Registro
+     */
+
     function handleRepContraseniaError(){
         const repContraseniaError = (values.contrasenia !== values.repcontrasenia);
         Setvalues((prevState) => ({ ...prevState, repContraseniaError}));
     }
 
+    /**
+     * @description Función que dependiendo de si se ha escogido o no género , cambia el valor a la constante generoError, que es la que hace que aparezca o no el mensaje de error.
+     * @name handleGenereError
+     * @function 
+     * @memberof module:Registro
+     */
+    
     function handleErrorGenero(){
-        const generoError = (values.genero !== null);
+        const generoError = !(values.genero === '');
         Setvalues((prevState) => ({ ...prevState, generoError}));
     }
     

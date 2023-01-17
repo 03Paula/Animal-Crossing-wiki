@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: login.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: login.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @file footerSesion.jsx
+ * @author Paula Flor García.
+ */
+
+import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import HeaderRegistro from "./headerRegistro";
+import BotonSesion from './botonSesion';
+import FooterSesion from "./footerSesion";
+import Inactividad from './inactividad';
+
+/**
+ * @type {Array} usuarios Usuarios de prueba para que se pueda probar el login.
+ */
+const usuarios = [
+    {nombre:'paula', apellidos:'flor garcía', email:'pflogar@g.educaand.es', numero:'345216789', usuario:'paula', contrasenia:'Pestillo123' },
+    {nombre:'usuario', apellidos:'usuario prueba', email:'usuario@gmail.es', numero:'000123467', usuario:'usuario', contrasenia:'Pestillo123' },
+];
+/**
+ * @module Login
+ */
+
+/**
+ * Componente para la página del login.
+ * @memberof module:Login
+ * 
+ * @returns {JSX}
+ */
+function Login()
+{
+    const navigate = useNavigate();
+
+    const [values, Setvalues] = useState({
+        usuario:'',
+        contrasenia:'',
+
+        usuarioError:false,
+        contraseniaError:false,
+    });
+
+    /**
+     * @description Función que comprueba si el usuario y la contraseña se encuentran en el array, si es así se almacena los datos de este en el localStorage.
+     * Si no hay errores aparecerá el alert con el mensaje y se redigirá al listado, si no aparecera el mensaje de error
+     * @name handleSubmit
+     * @function 
+     * @param e 
+     * @memberof module:Login
+     */
+
+    function handleSubmit(e){
+        e.preventDefault();
+
+        for (let i = 0; i &lt; usuarios.length; i++){
+            if (usuarios[i].usuario === values.usuario &amp;&amp; usuarios[i].contrasenia === values.contrasenia){
+                localStorage.setItem("nombre", usuarios[i].nombre);
+                localStorage.setItem("apellidos", usuarios[i].apellidos);
+                localStorage.setItem("email", usuarios[i].email);
+                localStorage.setItem("numero", usuarios[i].numero);
+                localStorage.setItem("usuario", usuarios[i].usuario);
+                localStorage.setItem("contraseña", usuarios[i].contrasenia);
+            }
+        }
+
+        if(!values.usuarioError &amp;&amp; !values.contraseniaError){
+            alert("Has iniciado sesión correctamente.")
+            navigate('/listado.html')
+        }else{
+            alert('La contraseña o el usuario no coinciden.')
+        }
+    }
+
+    /**
+     * @description Función que actualiza los valores con los introducidos por el input.
+     * @name handleChange
+     * @function
+     * @param e 
+     * @memberof module:Login
+     */
+
+    function handleChange(e){
+        const { target } = e;
+        const { name, value } = target;
+        const newValues ={
+            ...values, [name]: value
+        };
+
+        Setvalues(newValues);
+    }
+
+    /**
+     * @description Función que comprueba si el usuario introducido esta en el array y cambia el valor de usuarioError.
+     * @name handleUsuarioError
+     * @function
+     * @memberof module:Login
+     */
+
+    function handleUsuarioError(){
+        let usuario = false;
+        for (let i = 0; i &lt; usuarios.length; i++){
+            if(usuarios[i].usuario === values.usuario){
+                usuario = true;
+            }
+        }
+        const usuarioError = !usuario;
+        Setvalues((prevState) => ({ ...prevState, usuarioError}));
+    }
+
+    /**
+     * @description Función que comprueba si la contraseña introducida esta en el array y cambia los valores de contraseniaError.
+     * @name handleContraseniaError
+     * @function
+     * @memberof module:Login
+     */
+
+    function handleContraseniaError(){
+        let contrasenia = false;
+        for (let i = 0; i &lt; usuarios.length; i++){
+            if(usuarios[i].contrasenia === values.contrasenia){
+                contrasenia = true;
+            }
+        }
+
+        const contraseniaError = !contrasenia;
+        Setvalues((prevState) => ({ ...prevState, contraseniaError}));
+    }
+
+
+    return (
+        &lt;html>
+            &lt;main>
+            &lt;HeaderRegistro />
+            &lt;Inactividad />
+            &lt;section className="formulario">
+            &lt;h2 className="formulario__h2">Inicio de Sesión&lt;/h2>
+                &lt;form onSubmit={handleSubmit}>
+                &lt;input className="formulario__input" type="text" name="usuario" id="usuario" placeholder="Nombre de usuario" 
+                            onChange={handleChange} value={values.usuario} onBlur={handleUsuarioError} aria-errormessage="usuarioError" aria-invalid={values.usuarioError}
+                            required  
+                        />
+                    &lt;span className="error" id="usuarioError" aria-live="assertive" style={{visibility: values.usuarioError ? "visible" : "hidden", fontSize:'12px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
+                        Nombre de usuario inválido.
+                    &lt;/span>
+                    &lt;input class="formulario__input" type="password" name="contrasenia" id="contrasenia" placeholder="Contraseña" 
+                            value={values.contrasenia} onChange={handleChange} onBlur={handleContraseniaError} aria-errormessage='contraseñaError' aria-invalid={values.contraseniaError}
+                            required 
+                    />
+                    &lt;span className='error' id="contraseñaError" aria-live='assertive' style={{visibility: values.contraseniaError ? "visible" : "hidden", fontSize:'12px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
+                        La contraseña no es correcta.
+                    &lt;/span>
+                    &lt;p class="formulario__p">&lt;a class="formulario__p" href="registro.html">No estoy registrado&lt;/a>&lt;/p>                    
+                    &lt;BotonSesion 
+                        funcion='handleSubmit'
+                        texto='Iniciar Sesion'
+                    />
+                &lt;/form>
+            &lt;/section>
+        &lt;/main>
+        &lt;FooterSesion />
+        &lt;/html>
+        
+    )
+}
+
+export default Login;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-BotonCerrarSesion.html">BotonCerrarSesion</a></li><li><a href="module-BotonSesion.html">BotonSesion</a></li><li><a href="module-BotonTema.html">BotonTema</a></li><li><a href="module-Busqueda.html">Busqueda</a></li><li><a href="module-Button.html">Button</a></li><li><a href="module-Carta.html">Carta</a></li><li><a href="module-Contacto.html">Contacto</a></li><li><a href="module-Error404.html">Error404</a></li><li><a href="module-Flecha.html">Flecha</a></li><li><a href="module-Footer.html">Footer</a></li><li><a href="module-FooterSesion.html">FooterSesion</a></li><li><a href="module-FooterUsuario.html">FooterUsuario</a></li><li><a href="module-Header.html">Header</a></li><li><a href="module-HeaderLista.html">HeaderLista</a></li><li><a href="module-HeaderRegistro.html">HeaderRegistro</a></li><li><a href="module-Inactividad.html">Inactividad</a></li><li><a href="module-Index.html">Index</a></li><li><a href="module-Lista.html">Lista</a></li><li><a href="module-Login.html">Login</a></li><li><a href="module-RedSocial.html">RedSocial</a></li><li><a href="module-Registro.html">Registro</a></li><li><a href="module-Usuario.html">Usuario</a></li></ul><h3>Global</h3><ul><li><a href="global.html#favorito">favorito</a></li><li><a href="global.html#regContrasenia">regContrasenia</a></li><li><a href="global.html#regEmail">regEmail</a></li><li><a href="global.html#regNombre">regNombre</a></li><li><a href="global.html#regNombreUsu">regNombreUsu</a></li><li><a href="global.html#regTel">regTel</a></li><li><a href="global.html#tiempo">tiempo</a></li><li><a href="global.html#usuarios">usuarios</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Tue Jan 17 2023 17:40:33 GMT+0100 (hora estándar de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

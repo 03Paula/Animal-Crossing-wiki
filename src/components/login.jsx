@@ -1,3 +1,8 @@
+/**
+ * @file footerSesion.jsx
+ * @author Paula Flor García.
+ */
+
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import HeaderRegistro from "./headerRegistro";
@@ -5,11 +10,23 @@ import BotonSesion from './botonSesion';
 import FooterSesion from "./footerSesion";
 import Inactividad from './inactividad';
 
+/**
+ * @type {Array} usuarios Usuarios de prueba para que se pueda probar el login.
+ */
 const usuarios = [
     {nombre:'paula', apellidos:'flor garcía', email:'pflogar@g.educaand.es', numero:'345216789', usuario:'paula', contrasenia:'Pestillo123' },
     {nombre:'usuario', apellidos:'usuario prueba', email:'usuario@gmail.es', numero:'000123467', usuario:'usuario', contrasenia:'Pestillo123' },
 ];
+/**
+ * @module Login
+ */
 
+/**
+ * Componente para la página del login.
+ * @memberof module:Login
+ * 
+ * @returns {JSX}
+ */
 function Login()
 {
     const navigate = useNavigate();
@@ -22,10 +39,18 @@ function Login()
         contraseniaError:false,
     });
 
+    /**
+     * @description Función que comprueba si el usuario y la contraseña se encuentran en el array, si es así se almacena los datos de este en el localStorage.
+     * Si no hay errores aparecerá el alert con el mensaje y se redigirá al listado, si no aparecera el mensaje de error
+     * @name handleSubmit
+     * @function 
+     * @param e 
+     * @memberof module:Login
+     */
+
     function handleSubmit(e){
         e.preventDefault();
 
-        let formulario = false;
         for (let i = 0; i < usuarios.length; i++){
             if (usuarios[i].usuario === values.usuario && usuarios[i].contrasenia === values.contrasenia){
                 localStorage.setItem("nombre", usuarios[i].nombre);
@@ -34,17 +59,24 @@ function Login()
                 localStorage.setItem("numero", usuarios[i].numero);
                 localStorage.setItem("usuario", usuarios[i].usuario);
                 localStorage.setItem("contraseña", usuarios[i].contrasenia);
-                formulario=true;
             }
         }
 
-        if(!values.usuarioError && !values.contraseniaError & formulario===true){
+        if(!values.usuarioError && !values.contraseniaError){
             alert("Has iniciado sesión correctamente.")
             navigate('/listado.html')
         }else{
             alert('La contraseña o el usuario no coinciden.')
         }
     }
+
+    /**
+     * @description Función que actualiza los valores con los introducidos por el input.
+     * @name handleChange
+     * @function
+     * @param e 
+     * @memberof module:Login
+     */
 
     function handleChange(e){
         const { target } = e;
@@ -56,6 +88,13 @@ function Login()
         Setvalues(newValues);
     }
 
+    /**
+     * @description Función que comprueba si el usuario introducido esta en el array y cambia el valor de usuarioError.
+     * @name handleUsuarioError
+     * @function
+     * @memberof module:Login
+     */
+
     function handleUsuarioError(){
         let usuario = false;
         for (let i = 0; i < usuarios.length; i++){
@@ -66,6 +105,13 @@ function Login()
         const usuarioError = !usuario;
         Setvalues((prevState) => ({ ...prevState, usuarioError}));
     }
+
+    /**
+     * @description Función que comprueba si la contraseña introducida esta en el array y cambia los valores de contraseniaError.
+     * @name handleContraseniaError
+     * @function
+     * @memberof module:Login
+     */
 
     function handleContraseniaError(){
         let contrasenia = false;

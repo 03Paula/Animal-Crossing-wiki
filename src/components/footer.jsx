@@ -1,5 +1,22 @@
+/**
+ * @file footer.jsx
+ * @author Paula Flor García
+ */
+
 import React from "react";
 import RedSocial from "./redSocial";
+
+/**
+ * @module Footer
+ */
+
+
+/**
+ * Componente para el footer
+ * @memberof module:Footer
+ * 
+ * @returns {JSX}
+ */
 
 function Footer()
 {

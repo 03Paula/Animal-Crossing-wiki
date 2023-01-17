@@ -1,8 +1,23 @@
+/**
+ * @file footerSesion.jsx
+ * @author Paula Flor García.
+ */
+
 import React from "react";
 import Header from "./headerIndex";
 import Button from "./boton";
 import RedSocial from "./redSocial";
 import Inactividad from "./inactividad";
+/**
+ * @module Index
+ */
+
+/**
+ * Componente para la página de inicio (home).
+ * @memberof module:Index
+ * 
+ * @returns {JSX}
+ */
 
 function Index(){
 

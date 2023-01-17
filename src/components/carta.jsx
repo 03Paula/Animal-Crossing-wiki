@@ -11,14 +11,27 @@ import React from "react";
 let favorito = [];
 
 /**
- * 
- * @param {string} item.image_uri -> Imagen de cada personaje.
- * @param {string} item.icon_uri -> Icono de cada personaje.
- * @param {string} item.name -> Muestra el nombre del personaje.
- * @returns 
+ * @module Carta
  */
-function Carta({personajes}){
 
+/**
+ * Devuelve los datos de la Api
+ * 
+ * @param {string} item.image_uri - Imagen de cada personaje.
+ * @param {string} item.icon_uri - Icono de cada personaje.
+ * @param {string} item.name - Muestra el nombre del personaje.
+ * @param {string} item.personality - Muestra la personalidad del personaje.
+ * @param {string} item.birthday - Muestra el cumpleaños del personaje.
+ * @param {string} item.species - Muestra la especie del personaje.
+ * @param {string} item.gender - Muestra el género del personaje.
+ * @param {string} item.hobby - Muestra el hobby del personaje.
+ * @param {string} item.saying - Muestra su frase.
+ * @memberof module:Carta
+ * 
+ * @returns {JSX}
+ */
+
+function Carta({personajes}){
     return (
         <div className="row">
             {
@@ -43,6 +56,5 @@ function Carta({personajes}){
         </div>
     )
 }
-console.log(favorito)
 
 export default Carta;

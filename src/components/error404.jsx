@@ -1,5 +1,20 @@
+/**
+ * @file error404.jsx
+ * @author Paula Flor García
+ */
+
 import React from "react";
 import { useNavigate } from 'react-router-dom';
+/**
+ * @module Error404
+ */
+
+/**
+ * Componente para la página de Error 404.
+ * @memberof module:Error404
+ * 
+ * @returns {JSX}
+ */
 
 function Error404()
 {

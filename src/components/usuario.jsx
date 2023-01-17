@@ -1,3 +1,8 @@
+/**
+ * @file contacto.jsx
+ * @author Paula Flor García
+ */
+
 import React from "react";
 import BotonCerrarSesion from "./botonCerrarSesion";
 import Button from "./boton";
@@ -5,6 +10,17 @@ import HeaderRegistro from "./headerRegistro";
 import Flecha from "./flecha";
 import FooterUsuario from "./footerUsuario";
 import Inactividad from "./inactividad";
+
+/**
+ * @module Usuario
+ */
+
+/**
+ * Componente para la página de visualización de usuario
+ * @memberof module:Usuario
+ * 
+ * @returns {JSX}
+ */
 
 function Usuario(){
     return(
@@ -16,7 +32,7 @@ function Usuario(){
                     <section className="imagen-usuario">
                         <img src={require('../assets/img/Resetti.png')} alt="Avatar del usuario" />
                         <Button 
-                            className='btn--mediumDesktop--usuario btn--mediumDesktop'
+                            className='btn--mediumDesktop--usuario'
                             texto='Cambiar imagen'
                         />
                     <h1>{`${localStorage.getItem('usuario')}`}</h1>
