@@ -26,6 +26,7 @@ function RedSocial(props)
         <img
             className={`${props.className}`}
             src={require(`../assets/img/${props.img}`)}
+            alt="icono de la red social"
             onClick = {() =>{
                 window.open(`${props.enlace}`, '_blank')
             }

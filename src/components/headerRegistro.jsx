@@ -2,7 +2,6 @@
  * @file footerSesion.jsx
  * @author Paula Flor García.
  */
-import { logDOM } from "@testing-library/react";
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import BotonTema from "./botonTema";
@@ -23,7 +22,7 @@ function HeaderRegistro()
     return(
         <header>
             <section className="header">
-            <img className="header__logo" src={require('../assets/img/logo.webp')} onClick={() => navigate('/')} />
+            <img className="header__logo" src={require('../assets/img/logo.webp')} alt="" onClick={() => navigate('/')} />
             <section className="header__inicioSesion">
                 <BotonTema />
             </section>

@@ -41,7 +41,7 @@ function Login()
 
     /**
      * @description Función que comprueba si el usuario y la contraseña se encuentran en el array, si es así se almacena los datos de este en el localStorage.
-     * Si no hay errores aparecerá el alert con el mensaje y se redigirá al listado, si no aparecera el mensaje de error
+     * Si no hay errores aparecerá un mensaje y se redigirá al listado a los 3s, si no aparecera el mensaje de error
      * @name handleSubmit
      * @function 
      * @param e 
@@ -63,10 +63,17 @@ function Login()
         }
 
         if(!values.usuarioError && !values.contraseniaError){
-            alert("Has iniciado sesión correctamente.")
-            navigate('/listado.html')
+            document.getElementById('mensajeRedireccion').innerHTML = 'Inicio de sesion correcto, redirigiendo...';
+            var count = 3;
+            setInterval(function(){
+                count--;
+                if(count === 0){
+                    navigate('/listado.html')
+                }
+            },1000) 
+
         }else{
-            alert('La contraseña o el usuario no coinciden.')
+            document.getElementById('mensajeRedireccion').innerHTML = 'La contraseña o el usuario no coinciden.';
         }
     }
 
@@ -131,6 +138,7 @@ function Login()
             <main>
             <HeaderRegistro />
             <Inactividad />
+            <p className='mensajeRedireccion' id='mensajeRedireccion'></p>
             <section className="formulario">
             <h2 className="formulario__h2">Inicio de Sesión</h2>
                 <form onSubmit={handleSubmit}>

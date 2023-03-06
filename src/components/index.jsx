@@ -27,7 +27,7 @@ function Index(){
             <body>
             <Header />
             <Inactividad />
-            <ReactAudioPlayer
+            <ReactAudioPlayer className="audio"
                 src={require("../assets/audio/Bubblegum.mp3")}
                 autoPlay
                 controls

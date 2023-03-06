@@ -3,14 +3,14 @@
 @media screen and (min-width: 900px){
     .inicio{
         min-width: 100%;
-        height: max-content;
+        max-height: 90vh;
         display:flex;
         flex-flow: row;
     }
 
     .inicio__imagen2{
         width: 50%;
-        height: 90vh;
+        height: 87vh;
         background-image: var(--fondo-hojas);
         background-repeat: repeat;
         background-size: 20rem;
@@ -26,7 +26,7 @@
     
     .inicio__bienvenida{
         width: 50%;
-        height: 90vh;
+        height: 87vh;
         display: flex;
         align-items: center;
         flex-flow:column;
@@ -75,6 +75,15 @@
     .personaje__personajes{
         width: 12vh;
         height: auto;
+    }
+
+    .audio{
+        position: absolute;
+        margin-top: 63vh;
+        margin-left: 14%;
+    }
+    audio::-webkit-media-controls-panel{
+        background-color: var(--color-boton);
     }
 }
 
@@ -145,6 +154,10 @@
         position: fixed;
         bottom: 0vh;
         left: 10px;
+    }
+
+    audio{
+        display: none;
     }
 }
 

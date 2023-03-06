@@ -39,7 +39,7 @@ function Carta({personajes}){
                     <div key={index} className="col">
                         <div className="card" style={{minWidth: '200px'}}>
                             <img className="imagen" src={item.image_uri} alt="" />
-                            <h6><img className='icono' src={item.icon_uri} /> {item.name['name-USen']}</h6>
+                            <h6><img className='icono' src={item.icon_uri} alt="" /> {item.name['name-USen']}</h6>
                             <div className="container">
                             <p>Availability Nothern: {item.availability['month-northern']}</p>
                             <p>Availability Southern: {item.availability['month-southern']}</p>

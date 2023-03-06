@@ -130,8 +130,16 @@ function Registro()
                 localStorage.setItem("genero", values.genero);
                 localStorage.setItem("usuario", values.usuario);
                 localStorage.setItem("contraseña", values.contrasenia);
-                alert(`Se ha registrado correctamente. Bienvenido ${localStorage.getItem('usuario')}`);
-                navigate('/listado.html')
+
+                document.getElementById('mensajeRegistro').innerHTML = `Se ha registrado correctamente. Bienvenido ${localStorage.getItem('usuario')}, redirigiendo...`;
+                var count = 3;
+                setInterval(function(){
+                    count--;
+                    if(count === 0){
+                        navigate('/listado.html')
+                    }
+                },1000)
+
             }
     }
 
@@ -255,6 +263,7 @@ function Registro()
             &lt;HeaderRegistro />
             &lt;Inactividad />
             &lt;main>
+                &lt;p className="mensajeRedireccion" id="mensajeRegistro">&lt;/p>
                 &lt;section className="formulario">
                     &lt;h2 className="formulario__h2">Registro de usuario&lt;/h2>
                     &lt;form onSubmit={handleSubmit}>
@@ -262,28 +271,28 @@ function Registro()
                             value={values.nombre} onChange={handleChange} onBlur={handleNombreError} aria-errormessage="nombreError"  aria-invalid={values.nombreError} 
                             required 
                         />
-                    &lt;span className="error" id="nombreError" aria-live="assertive" style={{visibility: values.nombreError ? "visible" : "hidden", fontSize:'12px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
-                        Nombre inválido.Por favor introduzca un nombre válido.
+                    &lt;span className="error" id="nombreError" aria-live="assertive" style={{visibility: values.nombreError ? "visible" : "hidden", fontSize:'14px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
+                        Nombre inválido.Debe de tener al menos 3 letras.
                     &lt;/span>
                     &lt;input className="formulario__input" type="text" name="apellidos" id="apellidos" placeholder="Apellidos"
                             value={values.apellidos} onChange={handleChange} onBlur={handleApellidoError} aria-errormessage="apellidosError" aria-invalid={values.apellidosError} 
                             required 
                         />
-                    &lt;span className="error" id="apellidosError" aria-live="assertive" style={{visibility: values.apellidosError ? "visible" : "hidden", fontSize:'12px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
+                    &lt;span className="error" id="apellidosError" aria-live="assertive" style={{visibility: values.apellidosError ? "visible" : "hidden", fontSize:'14px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
                         Apellidos inválidos.Por favor introduzca unos apellidos válidos.
                     &lt;/span>
                     &lt;input className="formulario__input" type="email" name="email" id="email" placeholder="Correo Electrónico" 
                             value={values.email} onChange={handleChange} onBlur={handleEmailError} aria-errormessage="emailError" aria-invalid={values.emailError}
                             required 
                         />
-                    &lt;span className="error" id="emailError" aria-live="assertive" style={{visibility: values.emailError ? "visible" : "hidden", fontSize:'12px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
+                    &lt;span className="error" id="emailError" aria-live="assertive" style={{visibility: values.emailError ? "visible" : "hidden", fontSize:'14px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
                         Email inválido.Por favor introduzca un email válido.
                     &lt;/span>
                     &lt;input className="formulario__input" type="text" name="numero" id="numero" placeholder="Número de teléfono" 
                             value={values.numero} onChange={handleChange} onBlur={handleNumeroError} aria-errormessage="numeroError" aria-invalid={values.numeroError} 
                             required 
                         />
-                    &lt;span className="error" id="numeroError" aria-live="assertive" style={{visibility: values.numeroError ? "visible" : "hidden", fontSize:'12px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
+                    &lt;span className="error" id="numeroError" aria-live="assertive" style={{visibility: values.numeroError ? "visible" : "hidden", fontSize:'14px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
                         Numéro inválido.Por favor introduzca un número de teléfono válido.
                     &lt;/span>
                     
@@ -294,19 +303,19 @@ function Registro()
                                 value={values.genero} onChange={handleChange} onBlur={handleErrorGenero} aria-errormessage="generoError" aria-invalid={values.genero} 
                                 required
                             />
-                        &lt;label className="radioLabel" for='hombre'>Hombre&lt;/label>
+                        &lt;label className="radioLabel" id="generoLabel" for='hombre'>Femenino&lt;/label>
                         &lt;input type="radio" name="genero" id="genero" 
                                 value={values.genero} onChange={handleChange} onBlur={handleErrorGenero} aria-errormessage="generoError" aria-invalid={values.genero} 
                                 required
                             />
-                        &lt;label className="radioLabel" for='mujer'>Mujer&lt;/label>
+                        &lt;label className="radioLabel" id="generoLabel" for='mujer'>Masculino&lt;/label>
                         &lt;input type="radio" name="genero" id="genero" 
                                 value={values.genero} onChange={handleChange} onBlur={handleErrorGenero} aria-errormessage="generoError" aria-invalid={values.genero} 
                                 required
                             />
-                        &lt;label className="radioLabel"  for='otro'>Otro&lt;/label>
-                        &lt;span className="error" id="generoError" aria-live="assertive" style={{visibility: values.generoError ? "visible" : "hidden", fontSize:'12px', fontFamily:'Sura', height:'10px', marginRight:'80px', color:'#76674ac5', fontWeight:'bold'}}>
-                            No ha seleccionado ninguna opción.
+                        &lt;label className="radioLabel" id="generoLabel" for='otro'>Otro&lt;/label>
+                        &lt;span className="error" id="generoError" aria-live="assertive" style={{visibility: values.generoError ? "visible" : "hidden", fontSize:'14px', fontFamily:'Sura', height:'10px', marginRight:'80px', color:'#76674ac5', fontWeight:'bold'}}>
+                            No has seleccionado ninguna opción.
                         &lt;/span>
                     &lt;/fieldset>
 
@@ -315,21 +324,21 @@ function Registro()
                             value={values.usuario} onChange={handleChange} onBlur={handleUsuarioError} aria-errormessage="usuarioError" aria-invalid={values.usuarioError} 
                             required 
                         />
-                    &lt;span className="error" id="usuarioError" aria-live="assertive" style={{visibility: values.usuarioError ? "visible" : "hidden", fontSize:'12px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
-                        Nombre de usuario inválido.Por favor introduzca un nombre de usuario válido.
+                    &lt;span className="error" id="usuarioError" aria-live="assertive" style={{visibility: values.usuarioError ? "visible" : "hidden", fontSize:'14px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
+                        Nombre de usuario inválido.Por favor introduzca un nombre de usuario que tenga entre 4 y 16 caracteres.
                     &lt;/span>
                     &lt;input className="formulario__input" type="password" name="contrasenia" id="contrasenia" placeholder="Contraseña" 
                             value={values.contrasenia} onChange={handleChange} onBlur={handleContraseniaError} aria-errormessage="contraseñaError" aria-invalid={values.contraseniaError} 
                             required 
                         />
-                    &lt;span className="error" id="contraseñaError" aria-live="assertive" style={{visibility: values.contraseniaError ? "visible" : "hidden", fontSize:'12px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
-                        Contraseña inválida.Por favor introduzca una contraseña válida.
+                    &lt;span className="error" id="contraseñaError" aria-live="assertive" style={{visibility: values.contraseniaError ? "visible" : "hidden", fontSize:'14px', fontFamily:'Sura', height:'10px', marginRight:'100px', color:'#76674ac5', fontWeight:'bold'}}>
+                        Contraseña inválida.La contraseña debe de tener como mínimo una mayúscula, una minúscula y un número.
                     &lt;/span>
-                    &lt;input className="formulario__input" type="password" name="repcontrasenia" id="repcontrasenia" placeholder="Repita la contraseña" 
+                    &lt;input className="formulario__input" type="password" name="repcontrasenia" id="repcontrasenia" placeholder="Repita la contraseña"
                             value={values.repcontrasenia} onChange={handleChange} onBlur={handleRepContraseniaError} aria-errormessage="repContraseñaError" aria-invalid={values.repContraseniaError} 
                             required 
                         />
-                    &lt;span className="error" id="repContraseñaError" aria-live="assertive" style={{visibility: values.repContraseniaError? "visible" : "hidden", fontSize:'12px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
+                    &lt;span className="error" id="repContraseñaError" aria-live="assertive" style={{visibility: values.repContraseniaError? "visible" : "hidden", fontSize:'14px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
                         Las contraseñas no coinciden.
                     &lt;/span>
                     &lt;p class="formulario__p">&lt;a class="formulario__p" href="inicioSesion.html">Ya tengo cuenta&lt;/a>&lt;/p>  
@@ -355,13 +364,13 @@ export default Registro;</code></pre>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-BotonCerrarSesion.html">BotonCerrarSesion</a></li><li><a href="module-BotonSesion.html">BotonSesion</a></li><li><a href="module-BotonTema.html">BotonTema</a></li><li><a href="module-Busqueda.html">Busqueda</a></li><li><a href="module-Button.html">Button</a></li><li><a href="module-Carta.html">Carta</a></li><li><a href="module-Contacto.html">Contacto</a></li><li><a href="module-Error404.html">Error404</a></li><li><a href="module-Flecha.html">Flecha</a></li><li><a href="module-Footer.html">Footer</a></li><li><a href="module-FooterSesion.html">FooterSesion</a></li><li><a href="module-FooterUsuario.html">FooterUsuario</a></li><li><a href="module-Header.html">Header</a></li><li><a href="module-HeaderLista.html">HeaderLista</a></li><li><a href="module-HeaderRegistro.html">HeaderRegistro</a></li><li><a href="module-Inactividad.html">Inactividad</a></li><li><a href="module-Index.html">Index</a></li><li><a href="module-Lista.html">Lista</a></li><li><a href="module-Login.html">Login</a></li><li><a href="module-RedSocial.html">RedSocial</a></li><li><a href="module-Registro.html">Registro</a></li><li><a href="module-Usuario.html">Usuario</a></li></ul><h3>Global</h3><ul><li><a href="global.html#favorito">favorito</a></li><li><a href="global.html#regContrasenia">regContrasenia</a></li><li><a href="global.html#regEmail">regEmail</a></li><li><a href="global.html#regNombre">regNombre</a></li><li><a href="global.html#regNombreUsu">regNombreUsu</a></li><li><a href="global.html#regTel">regTel</a></li><li><a href="global.html#tiempo">tiempo</a></li><li><a href="global.html#usuarios">usuarios</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-BotonCerrarSesion.html">BotonCerrarSesion</a></li><li><a href="module-BotonSesion.html">BotonSesion</a></li><li><a href="module-BotonTema.html">BotonTema</a></li><li><a href="module-Busqueda.html">Busqueda</a></li><li><a href="module-Button.html">Button</a></li><li><a href="module-Carta.html">Carta</a></li><li><a href="module-Contacto.html">Contacto</a></li><li><a href="module-Error404.html">Error404</a></li><li><a href="module-Flecha.html">Flecha</a></li><li><a href="module-Footer.html">Footer</a></li><li><a href="module-FooterSesion.html">FooterSesion</a></li><li><a href="module-FooterUsuario.html">FooterUsuario</a></li><li><a href="module-Header.html">Header</a></li><li><a href="module-HeaderLista.html">HeaderLista</a></li><li><a href="module-HeaderRegistro.html">HeaderRegistro</a></li><li><a href="module-Inactividad.html">Inactividad</a></li><li><a href="module-Index.html">Index</a></li><li><a href="module-Lista.html">Lista</a></li><li><a href="module-Login.html">Login</a></li><li><a href="module-RedSocial.html">RedSocial</a></li><li><a href="module-Registro.html">Registro</a></li><li><a href="module-Usuario.html">Usuario</a></li></ul><h3>Global</h3><ul><li><a href="global.html#favorito">favorito</a></li><li><a href="global.html#regComentario">regComentario</a></li><li><a href="global.html#regContrasenia">regContrasenia</a></li><li><a href="global.html#regEmail">regEmail</a></li><li><a href="global.html#regNombre">regNombre</a></li><li><a href="global.html#regNombreUsu">regNombreUsu</a></li><li><a href="global.html#regTel">regTel</a></li><li><a href="global.html#tiempo">tiempo</a></li><li><a href="global.html#usuarios">usuarios</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Tue Jan 17 2023 20:39:36 GMT+0100 (hora estándar de Europa central)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Mon Mar 06 2023 13:26:02 GMT+0100 (Central European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

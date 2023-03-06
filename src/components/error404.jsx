@@ -37,7 +37,7 @@ function Error404()
                     <div id="nombrePersonaje">
                         <p className="p-desktop">Tom Nook</p>
                     </div>
-                    <img src={require('../assets/img/mano.png')} class="error__puntero" />
+                    <img src={require('../assets/img/mano.png')} class="error__puntero" alt="" />
                 </section>
         
             </main>

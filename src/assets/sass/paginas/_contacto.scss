@@ -9,7 +9,7 @@
 @media  screen and (min-width: 800px){
     .contactanos{
         width: 100%;
-        height: 90vh;
+        height: 87vh;
         display: flex;
     }
         
@@ -56,7 +56,7 @@
 
         #copia{
             position: absolute;
-            bottom: 130px;
+            bottom: 14%;
             display: flex;
 
         }
@@ -66,13 +66,13 @@
             margin-left: 15px;
             display: flex;
             position: absolute;
-            bottom: 124px;
+            bottom: 13.5%;
 
 
         }
 
         button{
-            margin-right: 500px;
+            margin-right: 34vw;
             position: absolute;
             bottom: 20px;
             right: 10px;
@@ -101,7 +101,6 @@
         width: 60%;
         height: 200px;
         display: block;
-        margin-bottom: 30px;
         padding-left: 10px;
         padding-top: 10px;
         background-color: var(--color-input);

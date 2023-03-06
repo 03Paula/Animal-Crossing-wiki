@@ -3,7 +3,6 @@
  * @author Paula Flor García.
  */
 
-import React from "react";
 
 /**
  * @param {Int} tiempo Almacenará el tiempo

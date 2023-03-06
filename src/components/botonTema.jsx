@@ -38,7 +38,7 @@ function BotonTema()
 
     return(
         <button className="btn--diaNoche" onClick={cambioTema} >
-            <img src={require('../assets/img/sol.png')} />
+            <img src={require('../assets/img/sol.png')} alt="" />
             
         </button>
     )

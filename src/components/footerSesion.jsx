@@ -47,7 +47,7 @@ function FooterSesion(){
             </section>
 
             <section className="imagenBienvenida">
-                <img className="imagenBienvenida__imagen" src={require(`../assets/img/Bienvenida.png`)} />
+                <img className="imagenBienvenida__imagen" src={require(`../assets/img/Bienvenida.png`)} alt="" />
             </section>
         </footer>
     )

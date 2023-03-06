@@ -51,6 +51,15 @@ const regNombre = new RegExp(/^[A-z]{3,}[\s]*[A-z]*/);
  */
 
 const regEmail =  new RegExp(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/);
+
+
+/**
+ * Expresión regular para validar los comentarios, debe de tener al menos dos palabras
+ * @type {Object}
+ */
+
+const regComentario = new RegExp(/^[A-z]+\s[A-z]*/);
+
 /**
  * @module Contacto
  */
@@ -86,11 +95,17 @@ function Contacto() {
 
     function handleSubmit(e){
         e.preventDefault();
-
-        if(!values.nombreCompletoError &amp;&amp; !values.emailContactoError){
-            alert('Su comentario ha sido enviado');
-            navigate('/listado.html');
+        if(!values.nombreCompletoError &amp;&amp; !values.emailContactoError &amp;&amp; !values.comentarioError){
+            document.getElementById('mensajeComentario').innerHTML = 'Su comentario ha sido enviado, redirigiendo...';
+            var count = 3;
+            setInterval(function(){
+                count--;
+                if(count === 0){
+                    navigate('/listado.html')
+                }
+            },1000)
         }
+
     }
 
     /**
@@ -142,7 +157,7 @@ function Contacto() {
      * @memberof module:Contacto
      */
     function handleComentarioError(){
-        const comentarioError = !(values.comentario.length >= 10);
+        const comentarioError = !regComentario.test(values.comentario);
         Setvalues((prevState) => ({ ...prevState, comentarioError}));
     }
 
@@ -151,6 +166,7 @@ function Contacto() {
             &lt;HeaderRegistro />
             &lt;Inactividad />
             &lt;main>
+                &lt;p className="mensajeRedireccion" id="mensajeComentario">&lt;/p>
                 &lt;section className="contactanos">
                     &lt;article className="contactar1">
                         &lt;h2 className="contactar1__h2">Contáctanos&lt;/h2>
@@ -160,36 +176,38 @@ function Contacto() {
                             nos comunicaremos contigo lo
                             antes posible.
                         &lt;/h6>
-                        &lt;img id="contactar1__mabel" src={require("../assets/img/Mabel_NH.webp")} />
+                        &lt;img id="contactar1__mabel" src={require("../assets/img/Mabel_NH.webp")} alt="Avatar del usuario" />
                     &lt;/article>
 
                     &lt;article className="contactar2">
                         &lt;form onSubmit={handleSubmit}>
-                            &lt;label className="contactar2__label" for="nombre">Nombre Completo&lt;/label>
-                            &lt;input className="contactar2__input" type="text" name="nombre" id="nombre" 
+                            &lt;label className="contactar2__label" for="nombreCompleto">Nombre Completo&lt;/label>
+                            &lt;input className="contactar2__input" type="text" name="nombreCompleto" id="nombre" 
                                 value={values.nombre} onChange={handleChange} onBlur={handleNombreCompletoError} aria-errormessage="nombreCompletoError"  aria-invalid={values.nombreCompletoError} 
                             required 
                                 />
-                            &lt;span className="error" id="nombreCompletoError" aria-live="assertive" style={{visibility: values.nombreCompletoError ? "visible" : "hidden", fontSize:'12px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
+                            &lt;span className="error" id="nombreCompletoError" aria-live="assertive" style={{visibility: values.nombreCompletoError ? "visible" : "hidden", fontSize:'14px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
                                 No has introducido un nombre válido.
                             &lt;/span>
-                            &lt;label className="contactar2__label" for="email" value={values.emailContacto} onChange={handleChange} onBlur={handleEmailContactoError} aria-errormessage="emailContactoError"  aria-invalid={values.emailContactoError} 
+                            &lt;label className="contactar2__label" for="emailContacto" value={values.emailContacto} onChange={handleChange} onBlur={handleEmailContactoError} aria-errormessage="emailContactoError"  aria-invalid={values.emailContactoError} 
                                     required >Email&lt;/label>
-                            &lt;input className="contactar2__input" type="email" name="email" id="email" 
+                            &lt;input className="contactar2__input" type="email" name="emailContacto" id="email" 
                                     value={values.emailContacto} onChange={handleChange} onBlur={handleEmailContactoError} aria-errormessage="emailContactoError"  aria-invalid={values.emailContactoError} 
                                     required 
                                 />
-                            &lt;span className="error" id="emailContactoError" aria-live="assertive" style={{visibility: values.emailContactoError ? "visible" : "hidden", fontSize:'12px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
+                            &lt;span className="error" id="emailContactoError" aria-live="assertive" style={{visibility: values.emailContactoError ? "visible" : "hidden", fontSize:'14px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
                                 No has introducido un email válido.
                             &lt;/span>
-                            &lt;label className="contactar2__label" for="Comentarios">Comentarios&lt;/label>
-                            &lt;textarea className="contactar2__textarea" name="Comentarios" id="Comentarios" placeholder="Escriba su comentario..." 
-                                value={values.comentario} onChange={handleChange} oonBlur={handleComentarioError} aria-errormessage="comentarioError" aria-invalid={values.comentarioError}
+                            &lt;label className="contactar2__label" for="comentario">Comentarios&lt;/label>
+                            &lt;textarea className="contactar2__textarea" name="comentario" id="Comentarios" placeholder="Escriba su comentario..." 
+                                value={values.comentario} onChange={handleChange} onBlur={handleComentarioError} aria-errormessage="comentarioError" aria-invalid={values.comentarioError}
                                 required >
                             &lt;/textarea>
-                            &lt;span className="error" id="comentarioError" aria-live="assertive" style={{visibility: values.comentarioError ? "visible" : "hidden", fontSize:'12px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
-                                No has introducido un comentario.
+                            &lt;span className="error" id="comentarioError" aria-live="assertive" style={{visibility: values.comentarioError ? "visible" : "hidden", fontSize:'14px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
+                                No has introducido un comentario o es demasiado corto, debe tener al menos 2 palabras.
                             &lt;/span>
+                            &lt;input type='checkbox' id="copia" name="copia" />
+                            &lt;label id="recibirCopia" for='copia'>Deseo obtener una copia de mi comentario por email.&lt;/label>
                             &lt;BotonSesion
                                 funcion='handleSubmit'
                                 texto='Enviar'
@@ -240,13 +258,13 @@ export default Contacto;</code></pre>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-BotonCerrarSesion.html">BotonCerrarSesion</a></li><li><a href="module-BotonSesion.html">BotonSesion</a></li><li><a href="module-BotonTema.html">BotonTema</a></li><li><a href="module-Busqueda.html">Busqueda</a></li><li><a href="module-Button.html">Button</a></li><li><a href="module-Carta.html">Carta</a></li><li><a href="module-Contacto.html">Contacto</a></li><li><a href="module-Error404.html">Error404</a></li><li><a href="module-Flecha.html">Flecha</a></li><li><a href="module-Footer.html">Footer</a></li><li><a href="module-FooterSesion.html">FooterSesion</a></li><li><a href="module-FooterUsuario.html">FooterUsuario</a></li><li><a href="module-Header.html">Header</a></li><li><a href="module-HeaderLista.html">HeaderLista</a></li><li><a href="module-HeaderRegistro.html">HeaderRegistro</a></li><li><a href="module-Inactividad.html">Inactividad</a></li><li><a href="module-Index.html">Index</a></li><li><a href="module-Lista.html">Lista</a></li><li><a href="module-Login.html">Login</a></li><li><a href="module-RedSocial.html">RedSocial</a></li><li><a href="module-Registro.html">Registro</a></li><li><a href="module-Usuario.html">Usuario</a></li></ul><h3>Global</h3><ul><li><a href="global.html#favorito">favorito</a></li><li><a href="global.html#regContrasenia">regContrasenia</a></li><li><a href="global.html#regEmail">regEmail</a></li><li><a href="global.html#regNombre">regNombre</a></li><li><a href="global.html#regNombreUsu">regNombreUsu</a></li><li><a href="global.html#regTel">regTel</a></li><li><a href="global.html#tiempo">tiempo</a></li><li><a href="global.html#usuarios">usuarios</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-BotonCerrarSesion.html">BotonCerrarSesion</a></li><li><a href="module-BotonSesion.html">BotonSesion</a></li><li><a href="module-BotonTema.html">BotonTema</a></li><li><a href="module-Busqueda.html">Busqueda</a></li><li><a href="module-Button.html">Button</a></li><li><a href="module-Carta.html">Carta</a></li><li><a href="module-Contacto.html">Contacto</a></li><li><a href="module-Error404.html">Error404</a></li><li><a href="module-Flecha.html">Flecha</a></li><li><a href="module-Footer.html">Footer</a></li><li><a href="module-FooterSesion.html">FooterSesion</a></li><li><a href="module-FooterUsuario.html">FooterUsuario</a></li><li><a href="module-Header.html">Header</a></li><li><a href="module-HeaderLista.html">HeaderLista</a></li><li><a href="module-HeaderRegistro.html">HeaderRegistro</a></li><li><a href="module-Inactividad.html">Inactividad</a></li><li><a href="module-Index.html">Index</a></li><li><a href="module-Lista.html">Lista</a></li><li><a href="module-Login.html">Login</a></li><li><a href="module-RedSocial.html">RedSocial</a></li><li><a href="module-Registro.html">Registro</a></li><li><a href="module-Usuario.html">Usuario</a></li></ul><h3>Global</h3><ul><li><a href="global.html#favorito">favorito</a></li><li><a href="global.html#regComentario">regComentario</a></li><li><a href="global.html#regContrasenia">regContrasenia</a></li><li><a href="global.html#regEmail">regEmail</a></li><li><a href="global.html#regNombre">regNombre</a></li><li><a href="global.html#regNombreUsu">regNombreUsu</a></li><li><a href="global.html#regTel">regTel</a></li><li><a href="global.html#tiempo">tiempo</a></li><li><a href="global.html#usuarios">usuarios</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Tue Jan 17 2023 20:39:36 GMT+0100 (hora estándar de Europa central)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Mon Mar 06 2023 13:26:02 GMT+0100 (Central European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
