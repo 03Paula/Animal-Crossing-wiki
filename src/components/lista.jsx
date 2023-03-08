@@ -7,8 +7,8 @@ import React, { useEffect, useState } from "react";
 import HeaderLista from "./headerLista";
 import Inactividad from "./inactividad";
 import Carta from "./carta";
-import Busqueda from "./barraDeBusqueda";
 import FooterSesion from "./footerSesion";
+
 
 /**
  * @module Lista
@@ -24,18 +24,9 @@ import FooterSesion from "./footerSesion";
 function Lista(){
 
     let [personajes, setPersonajes] = useState([]);
-    let [nombre, setNombre] = useState('');
+    const [busqueda, setBusqueda]= useState("");
 
     let inicialUrl = `http://acnhapi.com/v1a/fish`;
-
-    function visualizarInfo(){
-
-        (async function () {
-            let data = await fetch(inicialUrl).then((res) => res.json());
-            setPersonajes(data)
-        })();
-        console.log(inicialUrl)
-    }
 
     /**
      * @description Cambia la url para que se pueda visualizar los peces 
@@ -46,7 +37,8 @@ function Lista(){
      */
 
     function visualizarPeces(){
-        inicialUrl = `http://acnhapi.com/v1a/fish/?nombre=${nombre}`;
+        document.querySelector('.lista__filtro').innerHTML = 'Peces'
+        inicialUrl = `http://acnhapi.com/v1a/fish`;
         (async function () {
             let data = await fetch(inicialUrl).then((res) => res.json());
             setPersonajes(data)
@@ -63,6 +55,7 @@ function Lista(){
      */
 
     function visualizarInsectos(){
+        document.querySelector('.lista__filtro').innerHTML = 'Insectos'
         inicialUrl = `http://acnhapi.com/v1a/bugs`;
         (async function () {
             let data = await fetch(inicialUrl).then((res) => res.json());
@@ -79,6 +72,7 @@ function Lista(){
      */
 
     function visualizarCriaturas(){
+        document.querySelector('.lista__filtro').innerHTML = 'Criaturas marinas'
         inicialUrl = `https://acnhapi.com/v1a/sea`;
         (async function () {
             let data = await fetch(inicialUrl).then((res) => res.json());
@@ -93,12 +87,30 @@ function Lista(){
         })();
       }, [inicialUrl]);
 
+
+      const handleChange=e=>{
+        setBusqueda(e.target.value);
+        filtrar(e.target.value);
+      }
+
+      const filtrar=(terminoBusqueda)=>{
+        var resultadosBusqueda=personajes.filter((elemento)=>{
+          if(elemento.name['name-USen'].toString().toLowerCase().includes(terminoBusqueda.toLowerCase())
+          ){
+            return elemento;
+          }
+        });
+        setPersonajes(resultadosBusqueda);
+    }
+
     return(
         <>
             <HeaderLista />
             <Inactividad />
             <main>
-            <Busqueda setNombre={setNombre} />
+            <input id="headerbusqueda--search" type="text" placeholder="Buscar..." value={busqueda} onChange={handleChange}>
+            </input>
+            <button className="btn__headerbusqueda"><img id="header__busqueda__img" src={require('../assets/img/Vector.png')} alt="" /></button>
             <section class="filtrado">
                 <label class="filtrado__label" for="filtrar">Filtrar por: </label>
             </section>
@@ -107,6 +119,7 @@ function Lista(){
                 <button type="submit" className="btn--mediumDesktop" onClick={visualizarInsectos}>Insectos</button>
                 <button type="submit" className="btn--mediumDesktop" onClick={visualizarCriaturas}>Criaturas marinas</button>
             </div>
+            <h2 className="lista__filtro"></h2>
             <div className="lista">
                 <Carta personajes={personajes} />
             </div>

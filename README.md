@@ -12,6 +12,6 @@ Este comando instalará todas las dependencias que se encuentren en el package.j
  Esta se abrirá en el puerto 3000 por defecto.
 
 ## Despliegue con Netlify
-Puedes visitar la página desplegada [aquí.](https://jazzy-fairy-7663fc.netlify.app)
+Puedes visitar la página desplegada [aquí.](https://animalcrossingwiki.netlify.app/)
 #
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

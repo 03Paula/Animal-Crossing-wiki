@@ -27,7 +27,7 @@
     height: 50px;
     position: absolute;
     top: 170px;
-    left: 450px;
+    left: 30vw;
     margin-right: 15px;
     margin-left: 10px;
     border-radius: 50%;
@@ -104,7 +104,7 @@
     }
 
     .card{
-        margin-top: 30px;
+        margin-top: 10px;
         width: 300px;
         height: 690px;
         background-color: var(--color-input);
@@ -132,6 +132,13 @@
         margin-left: 20px;
         color: var(--color-letra);
     }
+
+}
+
+.lista__filtro{
+    position: absolute;
+    left: 10%;
+    text-align: center;
 }
 
 //Cuando la pantalla tenga un width menor o igual a 920px se eliminará el último elemento de cada fila.

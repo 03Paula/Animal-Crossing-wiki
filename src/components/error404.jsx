@@ -23,9 +23,6 @@ function Error404()
     return(
         <html>
             <main>
-                <section className="logotipo">
-                    <img className="logotipo--logo" src={require('../assets/img/logo.webp')} alt="logo del animal crossing New Horizons" />
-                </section>
 
                 <section className="error">
                     <img className="error--tom" src={require('../assets/img/Tom_Nook.webp')} alt="Imagen de Tom Nook" />
