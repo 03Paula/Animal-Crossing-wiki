@@ -4,7 +4,6 @@
  */
 
 import React from "react";
-import BotonTema from "./botonTema";
 import { useNavigate } from 'react-router-dom';
 /**
  * @module HeaderLista
@@ -32,7 +31,6 @@ function HeaderLista()
                         <p className="headerbusqueda__p headerbusqueda__favorito" onClick={() => navigate('/usuario.html')} style={{visibility: localStorage.getItem('usuario') ? "visible" : "hidden" }}>Favoritos</p>
                         <img src={require('../assets/img/Resetti.png')} className="header--imagenRedonda" onClick={() => navigate('/usuario.html')} alt="avatar del usuario"  style={{visibility: localStorage.getItem('usuario') ? "visible" : "hidden" }} />
                         <p className="headerbusqueda__p" onClick={() => navigate('/usuario.html')}>{localStorage.getItem('usuario')}</p>
-                        <BotonTema />
                 </section>
             </section>
         </header>

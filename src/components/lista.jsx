@@ -28,6 +28,15 @@ function Lista(){
 
     let inicialUrl = `http://acnhapi.com/v1a/fish`;
 
+    function visualizarInfo(){
+
+        (async function () {
+            let data = await fetch(inicialUrl).then((res) => res.json());
+            setPersonajes(data)
+        })();
+        console.log(inicialUrl)
+    }
+
     /**
      * @description Cambia la url para que se pueda visualizar los peces 
      * @name visualizarPeces
@@ -58,7 +67,7 @@ function Lista(){
         (async function () {
             let data = await fetch(inicialUrl).then((res) => res.json());
             setPersonajes(data)
-          })();
+        })();
     }
 
     /**
@@ -74,7 +83,7 @@ function Lista(){
         (async function () {
             let data = await fetch(inicialUrl).then((res) => res.json());
             setPersonajes(data)
-          })();
+        })();
     }
 
     useEffect(() => {
@@ -94,7 +103,7 @@ function Lista(){
                 <label class="filtrado__label" for="filtrar">Filtrar por: </label>
             </section>
             <div className='filtro'>
-                <button type="submit" className="btn--mediumDesktop" onClick={visualizarPeces}>Peces</button>
+                <button type="submit" className="btn--mediumDesktop"  onClick={visualizarPeces}>Peces</button>
                 <button type="submit" className="btn--mediumDesktop" onClick={visualizarInsectos}>Insectos</button>
                 <button type="submit" className="btn--mediumDesktop" onClick={visualizarCriaturas}>Criaturas marinas</button>
             </div>

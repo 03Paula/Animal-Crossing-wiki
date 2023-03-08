@@ -4,7 +4,6 @@
  */
 import React from "react";
 import { useNavigate } from 'react-router-dom';
-import BotonTema from "./botonTema";
 /**
  * @module HeaderRegistro
  */
@@ -24,7 +23,6 @@ function HeaderRegistro()
             <section className="header">
             <img className="header__logo" src={require('../assets/img/logo.webp')} alt="" onClick={() => navigate('/')} />
             <section className="header__inicioSesion">
-                <BotonTema />
             </section>
         </section>
         </header>

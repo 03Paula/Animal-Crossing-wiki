@@ -127,7 +127,6 @@ function Login()
                 contrasenia = true;
             }
         }
-
         const contraseniaError = !contrasenia;
         Setvalues((prevState) => ({ ...prevState, contraseniaError}));
     }
@@ -135,8 +134,8 @@ function Login()
 
     return (
         <html>
-            <main>
             <HeaderRegistro />
+            <main>
             <Inactividad />
             <p className='mensajeRedireccion' id='mensajeRedireccion'></p>
             <section className="formulario">
@@ -149,7 +148,7 @@ function Login()
                     <span className="error" id="usuarioError" aria-live="assertive" style={{visibility: values.usuarioError ? "visible" : "hidden", fontSize:'12px', fontFamily:'Sura', height:'10px', marginRight:'40px', color:'#76674ac5', fontWeight:'bold'}}>
                         Nombre de usuario inválido.
                     </span>
-                    <input class="formulario__input" type="password" name="contrasenia" id="contrasenia" placeholder="Contraseña" 
+                    <input className="formulario__input" type="password" name="contrasenia" id="contrasenia" placeholder="Contraseña" 
                             value={values.contrasenia} onChange={handleChange} onBlur={handleContraseniaError} aria-errormessage='contraseñaError' aria-invalid={values.contraseniaError}
                             required 
                     />

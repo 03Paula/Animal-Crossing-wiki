@@ -54,13 +54,36 @@
 .mostrar__lista{
     display: flex;
 }
-    .mostrar__lista__vecinos{
-        width: 150px;
-        height: auto;
-        margin: 20px;
-        cursor: pointer;
-    }
 
+.mostrar__lista__vecinos{
+    width: 150px;
+    height: auto;
+    margin: 20px;
+    cursor: pointer;
+}
 
+.btn__guardarDatos{
+    width: 200px;
+    text-align: center;
+    height: 50px;
+}
 
+.btn__editar{
+    font-size: large;
+    font-weight: bold;
+}
 
+.guardarDatos{
+    width: 200px;
+    height: 50px;
+    font-size: larger;
+}
+
+.cambiarDatosUsu.active{
+    opacity: 1;
+}
+
+.cambiarDatosUsu{
+    opacity: 0;
+    
+}
